@@ -1,0 +1,6 @@
+C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\TestPresentationClass\TestPresentationClass\bin\Debug\TestPresentationClass.exe.config
+C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\TestPresentationClass\TestPresentationClass\bin\Debug\TestPresentationClass.exe
+C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\TestPresentationClass\TestPresentationClass\bin\Debug\TestPresentationClass.pdb
+C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\TestPresentationClass\TestPresentationClass\obj\Debug\TestPresentationClass.csprojResolveAssemblyReference.cache
+C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\TestPresentationClass\TestPresentationClass\obj\Debug\TestPresentationClass.exe
+C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\TestPresentationClass\TestPresentationClass\obj\Debug\TestPresentationClass.pdb
