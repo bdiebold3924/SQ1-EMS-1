@@ -10,7 +10,7 @@ namespace TestPresentationClass
     {
         static void Main(string[] args)
         {
-            UIMenu.DisplayMainMenu();
+            UIMenu.MainMenu();
         }
     }
 }
