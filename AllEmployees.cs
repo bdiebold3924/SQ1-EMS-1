@@ -12,26 +12,6 @@ using System.Globalization;
 
 namespace AllEmployeees
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-            Employee newEmp = new Employee();
-            FulltimeEmployee newFemp = new FulltimeEmployee();
-            ParttimeEmployee newPemp = new ParttimeEmployee();
-            //newEmp.SetFirstName();
-            //newEmp.setLastName();
-            newEmp.setDateOfBirth();
-            //newEmp.setSIN();
-            //newFemp.setSalary();
-            //newPemp.setHourlyRate();
-
-        }
-    }
-
-
-
     public class Employee
     {
         /* ATTRIBUTES */
