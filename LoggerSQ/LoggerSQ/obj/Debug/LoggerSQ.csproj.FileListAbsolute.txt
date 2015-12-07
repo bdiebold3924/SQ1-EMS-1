@@ -4,3 +4,9 @@ C:\Users\jason\Documents\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.pdb
 C:\Users\jason\Documents\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.csprojResolveAssemblyReference.cache
 C:\Users\jason\Documents\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.exe
 C:\Users\jason\Documents\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.pdb
+C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.exe.config
+C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.exe
+C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.pdb
+C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.exe
+C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.pdb
+C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.csprojResolveAssemblyReference.cache
