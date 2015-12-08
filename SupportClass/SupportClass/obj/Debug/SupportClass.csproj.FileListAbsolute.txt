@@ -1,0 +1,5 @@
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\bin\Debug\SupportClass.dll
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\bin\Debug\SupportClass.pdb
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\obj\Debug\SupportClass.csprojResolveAssemblyReference.cache
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\obj\Debug\SupportClass.dll
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\obj\Debug\SupportClass.pdb

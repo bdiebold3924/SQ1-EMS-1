@@ -1,0 +1,7 @@
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\bin\Debug\Test.dll
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\bin\Debug\Test.pdb
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\bin\Debug\SupportClass.dll
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\bin\Debug\SupportClass.pdb
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\obj\Debug\Test.dll
+c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\obj\Debug\Test.pdb
