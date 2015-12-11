@@ -12,6 +12,7 @@ using System.Globalization;
 
 namespace AllEmployeees
 {
+
     public class Employee
     {
         /* ATTRIBUTES */
@@ -26,7 +27,7 @@ namespace AllEmployeees
 
 
 
-       public Employee()    //default constructor
+        public Employee()    //default constructor
         {
             firstName = null;
             lastName = null;
@@ -54,7 +55,7 @@ namespace AllEmployeees
 
         ~Employee()
         {
-            Console.WriteLine("Employee parent class cleaned and destroyed.");
+           // Console.WriteLine("Employee parent class cleaned and destroyed.");
         }
         /**
         * \brief Mutator used to set the employees first name
@@ -73,7 +74,7 @@ namespace AllEmployeees
             if (firstName.Equals(""))
             {
                 //first name is allowed to be empty, return true
-                Console.Write("Valid Name");
+               // LOG CALL Console.Write("Valid Name");
                 return true;
             }
 
@@ -100,13 +101,15 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid first name...");
+                    //LOG CALL
+                    //Console.Write("Invalid first name...");
                     firstName = null;
                     return (false);
                 }
 
             }
-            Console.WriteLine("First Name is Valid.");
+            //LOG CALL
+           // Console.WriteLine("First Name is Valid.");
             return true;
         }
 
@@ -127,7 +130,7 @@ namespace AllEmployeees
             if (lastName.Equals(""))
             {
                 //last name is allowed to be empty, return true
-                Console.Write("Valid Last Name");
+               //LOG CALL Console.Write("Valid Last Name");
                 return true;
             }
 
@@ -154,13 +157,13 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid last name...");
+                    //LOG CALL //Console.Write("Invalid last name...");
                     lastName = null;
                     return (false);
                 }
 
             }
-            Console.WriteLine("last Name is Valid.");
+           //LOG CALL  Console.WriteLine("last Name is Valid.");
             return true;
         }
 
@@ -176,18 +179,19 @@ namespace AllEmployeees
             temp = Console.ReadLine();
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
 
-           // Console.WriteLine(temp);
-            if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result)){
-                Console.WriteLine("Invalid date.");
+            // Console.WriteLine(temp);
+            if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+            {
+                // LOG CALL Console.WriteLine("Invalid date.");
                 return (false);
             }
             dateOfBirth = String.Copy(temp);
 
             dateOfBirth = dateOfBirth.Insert(4, "-");
             dateOfBirth = dateOfBirth.Insert(7, "-");
-          //  Console.WriteLine(dateOfBirth);          
+            //  Console.WriteLine(dateOfBirth);          
             return (true);
-   
+
         }
 
 
@@ -257,19 +261,19 @@ namespace AllEmployeees
             if (intTotal == (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
                 //SIN is valid
-                Console.WriteLine("Valid SIN.");
+               // LOG CALL  Console.WriteLine("Valid SIN.");
 
-                Console.WriteLine(socialInsuranceNumber);
+                //Console.WriteLine(socialInsuranceNumber);
 
                 socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
                 socialInsuranceNumber = socialInsuranceNumber.Insert(7, " ");
 
-                Console.WriteLine(socialInsuranceNumber);
+                //Console.WriteLine(socialInsuranceNumber);
 
                 return (true);
             }
 
-            Console.WriteLine("Invalid SIN");
+            // LOG CALL Console.WriteLine("Invalid SIN");
             socialInsuranceNumber = null;
             return (false);
         }
@@ -320,7 +324,7 @@ namespace AllEmployeees
             {
                 if (Char.IsDigit(c) == false)
                 {
-                    Console.WriteLine("Invalid salary input.");
+                  // LOG CALL  Console.WriteLine("Invalid salary input.");
                     return (false);
                 }
             }
@@ -328,7 +332,7 @@ namespace AllEmployeees
             newSalary = Convert.ToInt32(input);
             if (newSalary <= 0)
             {
-                Console.WriteLine("Invalid salary input.");
+               // LOG CALL Console.WriteLine("Invalid salary input.");
                 return (false);
             }
             return (true);
@@ -346,7 +350,7 @@ namespace AllEmployeees
 
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date.");
+                // LOG CALL Console.WriteLine("Invalid date.");
                 return (false);
             }
             dateOfHire = String.Copy(temp);
@@ -365,14 +369,14 @@ namespace AllEmployeees
             Console.WriteLine("Enter the date of hire. YYYY-MM-DD");
             temp = Console.ReadLine();
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
-            if(String.Compare("", temp) == 0)
+            if (String.Compare("", temp) == 0)
             {
                 //allowed to be blank... 
                 dateOfTermination = String.Copy(temp);
             }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date.");
+               // LOG CALL Console.WriteLine("Invalid date.");
                 return (false);
             }
             dateOfTermination = String.Copy(temp);
@@ -408,7 +412,7 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid first name.");
+                    // LOG CALL Console.Write("Invalid first name.");
                     return (false);
                 }
 
@@ -437,7 +441,7 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid last name.");
+                  // LOG CALL  Console.Write("Invalid last name.");
                     return (false);
                 }
             }
@@ -456,7 +460,7 @@ namespace AllEmployeees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                Console.WriteLine("Invalid SIN number.");
+                // LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
 
             }
@@ -468,7 +472,7 @@ namespace AllEmployeees
             {
                 if (c < '0' || c > '9')
                 {
-                    Console.WriteLine("Invalid SIN number.");
+                   // LOG CALL Console.WriteLine("Invalid SIN number.");
                     return (false);
                 }
             }
@@ -511,7 +515,7 @@ namespace AllEmployeees
 
 
                 // Console.WriteLine(socialInsuranceNumber);
-                Console.WriteLine("Invalid SIN number.");
+               //LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
@@ -519,35 +523,35 @@ namespace AllEmployeees
 
 
             //now validate Date of birth
-         
+
             DateTime result;
 
-          
+
             dateOfBirth = Regex.Replace(dateOfBirth, @"-+", ""); //removes all whitespace from the inputted date
 
             // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date of birth.");
+                // LOG CALL Console.WriteLine("Invalid date of birth.");
                 return (false);
             }
-            
+
 
             dateOfBirth = dateOfBirth.Insert(4, "-");
             dateOfBirth = dateOfBirth.Insert(7, "-");
             //  Console.WriteLine(dateOfBirth);          
 
             //now validate date of hire 
-   
+
             dateOfHire = Regex.Replace(dateOfHire, @"-+", ""); //removes all whitespace from the inputted date
 
             // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date of hire.");
+                // LOG CALL Console.WriteLine("Invalid date of hire.");
                 return (false);
             }
-          
+
 
             dateOfHire = dateOfHire.Insert(4, "-");
             dateOfHire = dateOfHire.Insert(7, "-");
@@ -563,7 +567,7 @@ namespace AllEmployeees
             }
             else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
             {
-                Console.WriteLine("Invalid date of termination.");
+               // LOG CALL  Console.WriteLine("Invalid date of termination.");
                 return (false);
             }
 
@@ -571,29 +575,63 @@ namespace AllEmployeees
             dateOfTermination = dateOfTermination.Insert(7, "-");
 
             //validate salary
-            if(salary <= 0)
+            if (salary <= 0)
             {
-                Console.WriteLine("Invalid Salary");
+              // LOG CALL  Console.WriteLine("Invalid Salary");
                 return (false);
             }
             return (true);
         }
 
 
-        public void Details()
+        public string Details()
         {
-            Console.WriteLine("Employee Details: ");
+            /*Console.WriteLine("Employee Details: ");
             Console.WriteLine("First Name: " + firstName);
             Console.WriteLine("Last Name: " + lastName);
             Console.WriteLine("Date of Birth: " + dateOfBirth);
             Console.WriteLine("SIN: " + socialInsuranceNumber);
             Console.WriteLine("Date of Hire: " + dateOfHire);
             Console.WriteLine("Date of termination " + dateOfTermination);
-            Console.WriteLine("Salary: " + salary);
+            Console.WriteLine("Salary: " + salary*/
+
+            string theDetails = "Employee Details:\n";
+
+            theDetails = String.Concat(theDetails, "First Name: ");
+            theDetails = String.Concat(theDetails, firstName);
+            theDetails += Environment.NewLine;
+
+            theDetails += "Last Name: ";
+            theDetails += lastName;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date Of Birth: ";
+            theDetails += dateOfBirth;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Social Insurance Number: ";
+            theDetails += socialInsuranceNumber; ;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date of Hire: ";
+            theDetails += dateOfHire;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date of Termination: ";
+            theDetails += dateOfTermination;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Salary($): ";
+            theDetails += salary;
+            theDetails += Environment.NewLine;
+
+
+            return (theDetails);
         }
+
         ~FulltimeEmployee()     //destructor for the FullTimeEmployee class
         {
-            Console.WriteLine("FullTime employee cleaned and destroyed.");
+            //Console.WriteLine("FullTime employee cleaned and destroyed.");
         }
 
 
@@ -637,7 +675,7 @@ namespace AllEmployeees
 
         ~ParttimeEmployee() //destructor for the parttime employee class
         {
-            Console.WriteLine("Parttime employee cleaned and destroyed.");
+            //Console.WriteLine("Parttime employee cleaned and destroyed.");
         }
 
         public bool setHourlyRate()
@@ -645,25 +683,59 @@ namespace AllEmployeees
             Console.WriteLine("Enter the employees hourly rate as a decimal value. (ie 10.00)");
             if (!double.TryParse(Console.ReadLine(), out hourlyRate))
             {
-                Console.WriteLine("Invalid hourly rate input");
+                // LOG CALL Console.WriteLine("Invalid hourly rate input");
                 return (false);
 
             }
-           // Console.WriteLine(hourlyRate);
+            // Console.WriteLine(hourlyRate);
 
             return true;
         }
 
-        public void Details()
+        public string Details()
         {
-            Console.WriteLine("Employee Details: ");
+            /*Console.WriteLine("Employee Details: ");
             Console.WriteLine("First Name: " + firstName);
             Console.WriteLine("Last Name: " + lastName);
             Console.WriteLine("Date of Birth: " + dateOfBirth);
             Console.WriteLine("SIN: " + socialInsuranceNumber);
             Console.WriteLine("Date of Hire: " + dateOfHire);
             Console.WriteLine("Date of termination " + dateOfTermination);
-            Console.WriteLine("Hourly Rate: " + hourlyRate);
+            Console.WriteLine("Hourly Rate: " + hourlyRate);*/
+
+            string theDetails = "Employee Details:\n";
+
+            theDetails = String.Concat(theDetails, "First Name: ");
+            theDetails = String.Concat(theDetails, firstName);
+            theDetails += Environment.NewLine;
+
+            theDetails += "Last Name: ";
+            theDetails += lastName;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date Of Birth: ";
+            theDetails += dateOfBirth;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Social Insurance Number: ";
+            theDetails += socialInsuranceNumber; ;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date of Hire: ";
+            theDetails += dateOfHire;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date of Termination: ";
+            theDetails += dateOfTermination;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Hourly Rate: ";
+            theDetails += hourlyRate;
+            theDetails += Environment.NewLine;
+
+
+
+            return (theDetails);
         }
 
         //date validation for hire and termination follows same as DOB
@@ -679,7 +751,7 @@ namespace AllEmployeees
 
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date.");
+                // LOG CALL Console.WriteLine("Invalid date.");
                 return (false);
             }
             dateOfHire = String.Copy(temp);
@@ -704,7 +776,7 @@ namespace AllEmployeees
             }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date.");
+                //LOG CALL Console.WriteLine("Invalid date.");
                 return (false);
             }
             dateOfTermination = String.Copy(temp);
@@ -740,7 +812,8 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid first name.");
+                   //LOG CALL
+                    //Console.Write("Invalid first name.");
                     return (false);
                 }
 
@@ -769,7 +842,7 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid last name.");
+                   //LOG CALL  Console.Write("Invalid last name.");
                     return (false);
                 }
             }
@@ -788,7 +861,7 @@ namespace AllEmployeees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                Console.WriteLine("Invalid SIN number.");
+               // LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
 
             }
@@ -800,7 +873,7 @@ namespace AllEmployeees
             {
                 if (c < '0' || c > '9')
                 {
-                    Console.WriteLine("Invalid SIN number.");
+                    // LOG CALL Console.WriteLine("Invalid SIN number.");
                     return (false);
                 }
             }
@@ -843,7 +916,7 @@ namespace AllEmployeees
 
 
                 // Console.WriteLine(socialInsuranceNumber);
-                Console.WriteLine("Invalid SIN number.");
+                // LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
@@ -860,7 +933,7 @@ namespace AllEmployeees
             // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date of birth.");
+             //LOG CALL   Console.WriteLine("Invalid date of birth.");
                 return (false);
             }
 
@@ -876,7 +949,7 @@ namespace AllEmployeees
             // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date of hire.");
+              //LOG CALL  Console.WriteLine("Invalid date of hire.");
                 return (false);
             }
 
@@ -895,7 +968,7 @@ namespace AllEmployeees
             }
             else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
             {
-                Console.WriteLine("Invalid date of termination.");
+            //LOG CALL    Console.WriteLine("Invalid date of termination.");
                 return (false);
             }
 
@@ -905,7 +978,7 @@ namespace AllEmployeees
             //validate salary
             if (hourlyRate <= 0.0)
             {
-                Console.WriteLine("Invalid Hourly Rate");
+                // LOG CALL Console.WriteLine("Invalid Hourly Rate");
                 return (false);
             }
             return (true);
@@ -916,7 +989,7 @@ namespace AllEmployeees
 
 
 
-        //start of contract employee
+    //start of contract employee
     class ContractEmployee : Employee
     {
         string contractStartDate;
@@ -956,7 +1029,7 @@ namespace AllEmployeees
 
         ~ContractEmployee()     //destructor for the contract employee class
         {
-            Console.WriteLine("Contract Employee cleaned and destroyed");
+            // Console.WriteLine("Contract Employee cleaned and destroyed");
         }
 
         //hourlyRate mutator..
@@ -965,22 +1038,57 @@ namespace AllEmployeees
             Console.WriteLine("Enter the employee's fixed contract amount.");
             if (!int.TryParse(Console.ReadLine(), out fixedContractAmount))
             {
-                Console.WriteLine("Invalid fixed contract amount input");
+            // LOG CALL    Console.WriteLine("Invalid fixed contract amount input");
                 return (false);
 
             }
             return (true);
         }
 
-        public void Details()
+        public string Details()
         {
-            Console.WriteLine("Employee Details: ");
-            Console.WriteLine("Company Name: " + lastName);
-            Console.WriteLine("Date of Incorporation: " + dateOfBirth);
-            Console.WriteLine("Business Number: " + socialInsuranceNumber);
-            Console.WriteLine("Contract Start Date: " + contractStartDate);
-            Console.WriteLine("Contract Stop Date: " + contractStopDate);
-            Console.WriteLine("Fixed Contract Amount ($): " + fixedContractAmount);
+
+            // string builder that builds the full output details of every attribute of the current employee object
+
+
+            /* Console.WriteLine("Employee Details: ");
+               Console.WriteLine("Company Name: " + lastName);
+               Console.WriteLine("Date of Incorporation: " + dateOfBirth);
+               Console.WriteLine("Business Number: " + socialInsuranceNumber);
+               Console.WriteLine("Contract Start Date: " + contractStartDate);
+               Console.WriteLine("Contract Stop Date: " + contractStopDate);
+               Console.WriteLine("Fixed Contract Amount ($): " + fixedContractAmount); */
+            //  string theDetails = ("Employee Details:\n Company Name: " + lastName + " ")
+
+            string theDetails = "Employee Details:\n";
+
+            theDetails = String.Concat(theDetails, "Company Name: ");
+            theDetails = String.Concat(theDetails, lastName);
+
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date of Incorporation: ";
+            theDetails += dateOfBirth;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Business Number: ";
+            theDetails += socialInsuranceNumber;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Contract Start Date: ";
+            theDetails += contractStartDate;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Contract Stop Date: ";
+            theDetails += contractStopDate;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Fixed Contract Amount($): ";
+            theDetails += fixedContractAmount;
+            theDetails += Environment.NewLine;
+
+
+            return (theDetails);
         }
         //contract start and stop dates are next here... business number validation of SIN is next up in validation...
 
@@ -995,7 +1103,7 @@ namespace AllEmployeees
 
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date.");
+            //LOG CALL     Console.WriteLine("Invalid date.");
                 return (false);
             }
             contractStartDate = String.Copy(temp);
@@ -1021,7 +1129,7 @@ namespace AllEmployeees
             }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date.");
+               //LOG CALL Console.WriteLine("Invalid date.");
                 return (false);
             }
             contractStopDate = String.Copy(temp);
@@ -1034,7 +1142,7 @@ namespace AllEmployeees
 
         public bool Validate()
         {
-            
+
             //now check lastName for validity ... stands for company name
             foreach (char c in lastName)
             {
@@ -1058,7 +1166,7 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid last name.");
+                   //LOG CALL Console.Write("Invalid last name.");
                     return (false);
                 }
             }
@@ -1077,7 +1185,7 @@ namespace AllEmployeees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                Console.WriteLine("Invalid SIN number.");
+               //LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
 
             }
@@ -1089,7 +1197,7 @@ namespace AllEmployeees
             {
                 if (c < '0' || c > '9')
                 {
-                    Console.WriteLine("Invalid SIN number.");
+                    //LOG CALL Console.WriteLine("Invalid SIN number.");
                     return (false);
                 }
             }
@@ -1130,21 +1238,21 @@ namespace AllEmployeees
             {
 
                 // Console.WriteLine(socialInsuranceNumber);
-                Console.WriteLine("Invalid BN.");
+              //LOG CALL  Console.WriteLine("Invalid BN.");
                 return (false);
             }
-            if((int)Char.GetNumericValue(socialInsuranceNumber[0]) != (int)Char.GetNumericValue(dateOfBirth[2]))
+            if ((int)Char.GetNumericValue(socialInsuranceNumber[0]) != (int)Char.GetNumericValue(dateOfBirth[2]))
             {
-                Console.WriteLine("Invalid Business Number, 1st number does not match company year");
+           //LOG CALL     Console.WriteLine("Invalid Business Number, 1st number does not match company year");
                 return (false);
             }
-            if((int)Char.GetNumericValue(socialInsuranceNumber[1]) != (int)Char.GetNumericValue(dateOfBirth[3]))
+            if ((int)Char.GetNumericValue(socialInsuranceNumber[1]) != (int)Char.GetNumericValue(dateOfBirth[3]))
             {
-                Console.WriteLine("Invalid Business Number, 2nd number does not match the company year.");
+               //LOG CALL Console.WriteLine("Invalid Business Number, 2nd number does not match the company year.");
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(5, " ");   //formats the output accordingly
-           
+
 
             //now validate Date of birth... stands for date of incorporation
 
@@ -1155,7 +1263,7 @@ namespace AllEmployeees
             // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date of birth.");
+                //LOG CALL Console.WriteLine("Invalid date of birth.");
                 return (false);
             }
 
@@ -1170,7 +1278,7 @@ namespace AllEmployeees
             // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(contractStartDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                Console.WriteLine("Invalid date of hire.");
+                // LOG CALL Console.WriteLine("Invalid date of hire.");
                 return (false);
             }
 
@@ -1181,20 +1289,20 @@ namespace AllEmployeees
             //now validate date of termination
             int blankFlag = 0;
             contractStopDate = Regex.Replace(contractStopDate, @"-+", ""); //removes all whitespace from the inputted date
-           
+
             if (!DateTime.TryParseExact(contractStopDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
             {
-                Console.WriteLine("Invalid date of termination.");
+               //LOG CALL Console.WriteLine("Invalid date of termination.");
                 return (false);
             }
 
-           contractStopDate = contractStopDate.Insert(4, "-");
+            contractStopDate = contractStopDate.Insert(4, "-");
             contractStopDate = contractStopDate.Insert(7, "-");
 
             //validate salary
             if (fixedContractAmount <= 0)
             {
-                Console.WriteLine("Invalid Salary");
+                // LOG CALL Console.WriteLine("Invalid Salary");
                 return (false);
             }
             return (true);
@@ -1239,7 +1347,7 @@ namespace AllEmployeees
             {
                 season = String.Copy(newSeason);
             }
-            else if(String.Compare("fall", newSeason) == 0)
+            else if (String.Compare("fall", newSeason) == 0)
             {
                 season = String.Copy(newSeason);
             }
@@ -1250,7 +1358,7 @@ namespace AllEmployeees
 
             piecePay = newPiecePay;
         }
-        
+
         public bool setSeason() //mutator for the season attribute
         {
             string temp = null;
@@ -1274,13 +1382,13 @@ namespace AllEmployeees
             {
                 season = String.Copy(temp);
             }
-            else if(String.Compare("", temp) == 0)
+            else if (String.Compare("", temp) == 0)
             {
                 season = String.Copy(temp);
             }
             else
             {
-                Console.WriteLine("Invalid input for the employee's season of work.");
+            //LOG CALL    Console.WriteLine("Invalid input for the employee's season of work.");
                 return (false);
             }
             return (true);
@@ -1292,22 +1400,52 @@ namespace AllEmployeees
 
             if (!double.TryParse(Console.ReadLine(), out piecePay))
             {
-                Console.WriteLine("Invalid piece pay input");
+               //LOG CALL  Console.WriteLine("Invalid piece pay input");
                 return (false);
 
             }
             return (true);
         }
 
-        public void Details()
+        public string Details()
         {
-            Console.WriteLine("Employee Details: ");
-            Console.WriteLine("First Name: " + firstName);
-            Console.WriteLine("Last Name: " + lastName);
-            Console.WriteLine("Date of Birth: " + dateOfBirth);
-            Console.WriteLine("SIN: " + socialInsuranceNumber);
-            Console.WriteLine("Season: " + season);
-            Console.WriteLine("Piece Pay ($/piece): " + piecePay);
+            /*  Console.WriteLine("Employee Details: ");
+                Console.WriteLine("First Name: " + firstName);
+                Console.WriteLine("Last Name: " + lastName);
+                Console.WriteLine("Date of Birth: " + dateOfBirth);
+                Console.WriteLine("SIN: " + socialInsuranceNumber);
+                Console.WriteLine("Season: " + season);
+                Console.WriteLine("Piece Pay ($/piece): " + piecePay); */
+
+            string theDetails = "Employee Details:\n";
+
+            theDetails = String.Concat(theDetails, "First Name: ");
+            theDetails = String.Concat(theDetails, firstName);
+
+            theDetails += Environment.NewLine;
+
+            theDetails += "Last Name: ";
+            theDetails += lastName;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Date Of Birth: ";
+            theDetails += dateOfBirth;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Social Insurance Number: ";
+            theDetails += socialInsuranceNumber; ;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Season: ";
+            theDetails += season;
+            theDetails += Environment.NewLine;
+
+            theDetails += "Piece Pay($): ";
+            theDetails += piecePay;
+            theDetails += Environment.NewLine;
+
+
+            return (theDetails);
         }
         public bool Validate()
         {
@@ -1334,7 +1472,7 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid first name.");
+                    //LOG CALL Console.Write("Invalid first name.");
                     return (false);
                 }
 
@@ -1363,7 +1501,7 @@ namespace AllEmployeees
                 }
                 else
                 {
-                    Console.Write("Invalid last name.");
+                   //LOG CALL Console.Write("Invalid last name.");
                     return (false);
                 }
             }
@@ -1382,19 +1520,19 @@ namespace AllEmployeees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                Console.WriteLine("Invalid SIN number.");
+                // LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
 
             }
-            
+
             //now check that it contains only numbers...
 
- 
+
             foreach (char c in socialInsuranceNumber)
             {
                 if (c < '0' || c > '9')
                 {
-                    Console.WriteLine("Invalid SIN number.");
+          //LOG CALL          Console.WriteLine("Invalid SIN number.");
                     return (false);
                 }
             }
@@ -1433,51 +1571,51 @@ namespace AllEmployeees
             //check if intTotal is equal to the 9th digit of the SIN, if so, SIN is valid...
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
-        
-               
+
+
 
                 // Console.WriteLine(socialInsuranceNumber);
-                Console.WriteLine("Invalid SIN number.");
+               //LOG CALL Console.WriteLine("Invalid SIN number.");
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
             socialInsuranceNumber = socialInsuranceNumber.Insert(7, " ");
 
             //now check for valid season value..
-             
+
             if (String.Compare("winter", season) != 0)
             {
-                Console.WriteLine("Invalid season");
+                // LOG CALL             Console.WriteLine("Invalid season");
                 return (false);
             }
             else if (String.Compare("spring", season) != 0)
             {
-                Console.WriteLine("Invalid season");
+              //LOG CALL  Console.WriteLine("Invalid season");
                 return (false);
             }
             else if (String.Compare("summer", season) != 0)
             {
-                Console.WriteLine("Invalid season");
+            //LOG CALL    Console.WriteLine("Invalid season");
                 return (false);
             }
             else if (String.Compare("fall", season) != 0)
             {
-                Console.WriteLine("Invalid season");
+               //LOG CALL Console.WriteLine("Invalid season");
                 return (false);
             }
             else if (String.Compare("", season) != 0)
             {
-                Console.WriteLine("Invalid season");
+                // LOG CALLConsole.WriteLine("Invalid season");
                 return (false);
             }
-          
+
             //now validate piece pay
-            if(piecePay <= 0.0)
+            if (piecePay <= 0.0)
             {
-                Console.WriteLine("Invalid Piece pay");
+                //LOG CALL Console.WriteLine("Invalid Piece pay");
                 return (false);
             }
-            
+
 
             //now validate Date of birth
 
@@ -1486,7 +1624,7 @@ namespace AllEmployeees
 
         ~SeasonalEmployee() //destructor for the seasonal employee
         {
-            Console.WriteLine("Seasonal employee class cleaned and destroyed");
+          //  Console.WriteLine("Seasonal employee class cleaned and destroyed");
         }
     }
 }
