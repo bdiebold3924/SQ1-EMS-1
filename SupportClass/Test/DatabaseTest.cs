@@ -13,9 +13,9 @@ namespace Test
         {
            List<string> data = new List<string>();
            TestLoad(data);
-           TestSave(data);
-           TestDelete();
-           TestReload(data);
+          // TestSave(data);
+           //TestDelete();
+           //TestReload(data);
         }
         /**
 * \brief Method that runs the test for reloading the database (saving and then loading)
