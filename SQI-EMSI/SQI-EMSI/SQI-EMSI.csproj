@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{11DF32D7-C954-4142-95BC-08DAEFDF192C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{F350CD4E-AFEA-4438-9350-0EB369698826}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Presentation</RootNamespace>
-    <AssemblyName>Presentation</AssemblyName>
+    <RootNamespace>SQI_EMSI</RootNamespace>
+    <AssemblyName>SQI-EMSI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +35,9 @@
     <Reference Include="AllEmployees">
       <HintPath>..\..\AllEmployees\AllEmployees\AllEmployees\bin\Debug\AllEmployees.dll</HintPath>
     </Reference>
+    <Reference Include="Presentation">
+      <HintPath>..\..\Presentation\Presentation\bin\Debug\Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="SupportClass">
       <HintPath>..\..\SupportClass\SupportClass\bin\Debug\SupportClass.dll</HintPath>
     </Reference>
@@ -43,13 +48,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TheCompany">
-      <HintPath>..\..\TheCompany\TheCompany\TheCompany\bin\Debug\TheCompany.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UIMenu.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

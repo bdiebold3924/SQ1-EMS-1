@@ -1,0 +1,20 @@
+Began integration of all classes.
+Created SQI-EMSI as the mainline of program.
+The following changes were made to theCompany class and its methods:
+1. Changed the name of class TheCompany to theCompany avoid name issues with its namespace.
+2. List<object> is now List<Employee>
+3. Remove now takes the employees SIN as a parameter and uses that to traverse the list of employees to find the one to remove
+4. Add now takes a second bool parameter to determine if the employee is valid
+5. Traverse goes through the list of employees and adds the details of each to a string, then returns that string or an error string if the database is empty
+6. Added a second traverse method (Traverse(string SIN)) which looks through the list find an employee with that SIN and returns its details. An empty string is returned if no employee is found
+7. Removed the logic from the constructor that set the list to null
+The following changes were made to the UIMenu class and its methods:
+1. Integrated the the following methods from the TheCompany and SupportClass Class Libraries: SaveDatabase, LoadDatabase, Remove, Traverse()
+2. Added logic to parse the List<string> returned from LoadDatabase and create the employees from that.
+3. Finished the employeeManagementMenu()
+4. Added a second employeeDetailsMenu function for adding employees (original one is for modifying employees)
+The following changes were made to the AllEmployees class library, its classes, and their methods:
+1. Separated the employee classes into individual files
+2. Made each employee class public
+3. Added parent employee class' constructor parameters to the children's constructors
+4. Made each constructor set the employee type
