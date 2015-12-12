@@ -3,8 +3,11 @@ c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\b
 c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\obj\Debug\SupportClass.csprojResolveAssemblyReference.cache
 c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\obj\Debug\SupportClass.dll
 c:\users\jason\documents\visual studio 2013\Projects\SupportClass\SupportClass\obj\Debug\SupportClass.pdb
+<<<<<<< HEAD
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\SupportClass\obj\Debug\SupportClass.csprojResolveAssemblyReference.cache
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\SupportClass\obj\Debug\SupportClass.dll
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\SupportClass\obj\Debug\SupportClass.pdb
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\SupportClass\bin\Debug\SupportClass.dll
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\SupportClass\bin\Debug\SupportClass.pdb
+=======
+>>>>>>> master

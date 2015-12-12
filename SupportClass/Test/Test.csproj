@@ -55,7 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SupportClass\SupportClass.csproj">
+<<<<<<< HEAD
       <Project>{da3c127d-f4cd-4f60-8b17-4ef3dd6fc6d3}</Project>
+=======
+      <Project>{2530579b-b7d4-46da-a991-ed0735ef060a}</Project>
+>>>>>>> master
       <Name>SupportClass</Name>
     </ProjectReference>
   </ItemGroup>

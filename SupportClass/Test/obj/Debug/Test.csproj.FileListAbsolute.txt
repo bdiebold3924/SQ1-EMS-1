@@ -5,6 +5,7 @@ c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\bin\Debug
 c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\obj\Debug\Test.dll
 c:\users\jason\documents\visual studio 2013\Projects\SupportClass\Test\obj\Debug\Test.pdb
+<<<<<<< HEAD
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\Test\obj\Debug\Test.dll
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\Test\obj\Debug\Test.pdb
@@ -15,3 +16,5 @@ C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\SupportClass\Test\bin\Debug\Supp
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\Supporting\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\Supporting\Test\obj\Debug\Test.dll
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\Supporting\Test\obj\Debug\Test.pdb
+=======
+>>>>>>> master

@@ -10,6 +10,9 @@ C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.pdb
 C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.exe
 C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.pdb
 C:\Users\jason\Documents\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\LoggerSQ\LoggerSQ\bin\Debug\LoggerSQ.exe.config
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.exe
 C:\Brandonroot\Brandon_Brandon-PC_3510\SQ1-EMS1\LoggerSQ\LoggerSQ\obj\Debug\LoggerSQ.pdb
+=======
+>>>>>>> master
