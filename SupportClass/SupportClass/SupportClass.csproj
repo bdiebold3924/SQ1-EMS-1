@@ -4,7 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+<<<<<<< HEAD
+    <ProjectGuid>{DA3C127D-F4CD-4F60-8B17-4EF3DD6FC6D3}</ProjectGuid>
+=======
     <ProjectGuid>{2530579B-B7D4-46DA-A991-ED0735EF060A}</ProjectGuid>
+>>>>>>> master
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SupportClass</RootNamespace>

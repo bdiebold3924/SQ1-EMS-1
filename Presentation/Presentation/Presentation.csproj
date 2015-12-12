@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AllEmployees">
+      <HintPath>..\..\AllEmployees\AllEmployees\AllEmployees\bin\Debug\AllEmployees.dll</HintPath>
+    </Reference>
+    <Reference Include="SupportClass">
+      <HintPath>..\..\SupportClass\SupportClass\bin\Debug\SupportClass.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -37,6 +43,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TheCompany">
+      <HintPath>..\..\TheCompany\TheCompany\TheCompany\bin\Debug\TheCompany.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UIMenu.cs" />
