@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using AllEmployees;
-
+using Supporting;
 
 namespace TheCompany
 {
@@ -29,6 +29,7 @@ namespace TheCompany
             if (valid)
             {
                 theCompany.Add(newEmployee);
+                Logger.Log("TheCompany", "Add", "New employee was officially added to TheCompany");
             }
         }
 
@@ -39,6 +40,7 @@ namespace TheCompany
                 if(e.socialInsuranceNumber == SIN)
                 {
                     theCompany.Remove(e);     //removes the current employee being looked at from the container
+                     Logger.Log("TheCompany", "Remove", "Current employee being looked at was removed from TheCompany");
                 }
             }
         }
