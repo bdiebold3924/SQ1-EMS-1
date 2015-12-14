@@ -32,14 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AllEmployees">
-      <HintPath>..\..\AllEmployees\AllEmployees\AllEmployees\bin\Debug\AllEmployees.dll</HintPath>
-    </Reference>
     <Reference Include="Presentation">
       <HintPath>..\..\Presentation\Presentation\bin\Debug\Presentation.dll</HintPath>
-    </Reference>
-    <Reference Include="SupportClass">
-      <HintPath>..\..\SupportClass\SupportClass\bin\Debug\SupportClass.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
