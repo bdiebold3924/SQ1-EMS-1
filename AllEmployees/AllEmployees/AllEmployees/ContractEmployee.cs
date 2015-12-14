@@ -89,6 +89,14 @@ namespace AllEmployees
                 return (false);
 
             }
+            
+             int newNum = Int32.Parse(newAmount);
+            if (newNum < 0)
+            {
+               Logger.Log("ContractEmployee", "SetFixedContractAmount", "New amount entered is invalid, not an integer.");
+                return (false);
+            }
+            fixedContractAmount = newNum;
              Logger.Log("ContractEmployee", "SetFixedContractAmount", "New contract amount entered is valid");
             return (true);
         }
