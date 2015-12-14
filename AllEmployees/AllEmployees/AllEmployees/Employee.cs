@@ -13,7 +13,12 @@ using Supporting;
 
 namespace AllEmployees
 {
-
+    /** Class: Employee
+    
+        Purpose: The following class is a parent class to 4 other sub-classes of types of employees. This class holds 
+                an employees first and last name, date of birth, and their SIN number and is the main object to be 
+                worked with when creating new employees.    
+                */
     public class Employee
     {
         /* ATTRIBUTES */
@@ -27,7 +32,10 @@ namespace AllEmployees
 
 
 
-
+        /** Name: Employee()
+        Params: None
+        Use: The following is a default constructor that sets all attribute values to zero values.
+        */
         public Employee()    //default constructor
         {
             firstName = null;
@@ -36,7 +44,12 @@ namespace AllEmployees
             socialInsuranceNumber = null;
 
         }
-
+        /** Name: Employee()
+        Params: string _firstName, string _lastName
+        Use: The following is a constructor that takes an employees first and last name and sets the classes attributes
+            to them. As well, it sets the remaining attributes to zero values.
+            */
+        */
         public Employee(string _firstName, string _lastName)    //constructor that takes names 
         {
             firstName = String.Copy(_firstName);
@@ -46,6 +59,10 @@ namespace AllEmployees
             socialInsuranceNumber = null;
         }
 
+        /** Name: Employee()
+        Params: string newFirstName, string newLastName, string newDateOfBirth, string newSIN
+        Use: The following is a constructor that takes all attribute values and sets the classes attributes to these values.
+        */
         public Employee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN)
         {
             firstName = String.Copy(newFirstName);
@@ -53,18 +70,23 @@ namespace AllEmployees
             dateOfBirth = String.Copy(newDateOfBirth);
             socialInsuranceNumber = String.Copy(newSIN);
         }
-
+        /** Name: ~Employee()
+        Params: None
+        Use: The following is a destructor for the Employee class
+        */
+        
         ~Employee()
         {
         }
         /**
+        Name: SetFirstName()
         * \brief Mutator used to set the employees first name
         * \param - firstName - <b>string<\b> - represents the employee's first name
         */
         public bool SetFirstName(string newFirstName)
         {
 
-            string tester = string.Empty;
+            string tester = string.Empty;   //set an empty string for checking if the name is an empty string
 
             firstName = newFirstName;
 
@@ -73,7 +95,7 @@ namespace AllEmployees
             if (firstName.Equals(""))
             {
                 //first name is allowed to be empty, return true
-               // LOG CALL
+                Logger.Log("Employee", "SetFirstName", "First Name is valid.");
                 return true;
             }
 
@@ -100,17 +122,18 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL
+                    Logger.Log("Employee", "SetFirstName", "First Name is invalid.");
                     firstName = null;
                     return (false);
                 }
 
             }
-            //LOG CALL
+            Logger.Log("Employee", "SetFirstName", "First Name is valid.");
             return true;
         }
 
         /**
+        * Name: SetlastName()
        * \brief Mutator used to set the employees last name
        * \param - lastName - <b>string<\b> - represents the employee's last name
        */
@@ -125,7 +148,7 @@ namespace AllEmployees
             if (lastName.Equals(""))
             {
                 //last name is allowed to be empty, return true
-               //LOG CALL
+                Logger.Log("Employee", "SetLastName", "Last Name is valid.");
                 return true;
             }
 
@@ -152,40 +175,48 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL
+                    Logger.Log("Employee", "SetLastName", "Last Name is invalid.");
                     lastName = null;
                     return (false);
                 }
 
             }
-           //LOG CALL
+            Logger.Log("Employee", "SetLastName", "Last Name is valid and set.");
             return true;
         }
 
         /**
+        Name: SetdateOfBirth()
+        Params: string newBirthDay
     * \brief Mutator used to set the employees dateOfBirth
     */
         public bool SetDateOfBirth(string newBirthDay)
         {
             string temp;
-            DateTime result;
+            DateTime result;    
 
             temp = newBirthDay;
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
 
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL
+                Logger.Log("Employee", "SetDateOfBirth", "Date of Birth is invalid.");
                 return (false);
             }
             dateOfBirth = String.Copy(temp);
 
-            dateOfBirth = dateOfBirth.Insert(4, "-");
+            dateOfBirth = dateOfBirth.Insert(4, "-");   //reformat the string for output
             dateOfBirth = dateOfBirth.Insert(7, "-");
+            Logger.Log("Employee", "SetDateOfBirth", "Date of Birth is valid and set.");
             return (true);
 
         }
-
+        /** 
+        Name: SetSIN()
+        Params: string newSIN
+        Use: Method is a mutator used to set the value of the SIN attribute of the employee class. Returns true if valid entry
+            false if not.
+            */
         public bool SetSIN(string newSIN)
         {
             socialInsuranceNumber = newSIN;
@@ -199,8 +230,9 @@ namespace AllEmployees
             int temp2 = 0;
 
 
-            if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length > 9))
+            if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length > 9))  //make sure the SIN is a valid length
             {
+                Logger.Log("Employee", "SetSIN", "SIN is invalid. Invalid length.");
                 return (false);
 
             }
@@ -210,12 +242,14 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9')
                 {
+                    Logger.Log("Employee", "SetSIN", "SIN is invalid. Invalid characters within it.");
                     return (false);
                 }
             }
 
             //now can do SIN manipulation...
 
+            //even numbers get multiplied by two and added as single digits. Odds get added. 
             for (intCount = 1; intCount <= 8; intCount++)
             {
                 if (intCount % 2 == 0)    //if the intCount is an even number
@@ -255,11 +289,11 @@ namespace AllEmployees
                 socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
                 socialInsuranceNumber = socialInsuranceNumber.Insert(7, " ");
                 
-
+                Logger.Log("Employee", "SetSIN", "SIN is valid.");
                 return (true);
             }
 
-            // LOG CALL
+            Logger.Log("Employee", "SetSIN", "SIN is invalid.");
             socialInsuranceNumber = null;
             return (false);
         }
