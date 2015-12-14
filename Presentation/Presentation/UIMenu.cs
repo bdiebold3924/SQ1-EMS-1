@@ -101,7 +101,9 @@ namespace Presentation
                             string dob = "";
                             string sin = "";
                             string empType = "";
-                            database = Database.LoadDatabase();
+                            Console.WriteLine("What file would you like to load the database from?");
+                            string fileName = Console.ReadLine();
+                            database = Database.LoadDatabase(fileName);
                             if(database[0] == "ERROR")
                             {
                                 Console.WriteLine("Failed to load the database.");
@@ -167,10 +169,7 @@ namespace Presentation
                                             }
                                             index++;
                                             FulltimeEmployee tmpFTEmp = new FulltimeEmployee(fname, lname, dob, sin, doh, dot, sal);
-                                            if(tmpFTEmp.Validate())
-                                            {
-                                                empList.Add(tmpFTEmp, true);
-                                            }
+                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
                                             break;
                                         }
                                     case "PT":
@@ -199,10 +198,7 @@ namespace Presentation
                                             }
                                             index++;
                                             ParttimeEmployee tmpFTEmp = new ParttimeEmployee(fname, lname, dob, sin, doh, dot, rate);
-                                            if (tmpFTEmp.Validate())
-                                            {
-                                                empList.Add(tmpFTEmp, true);
-                                            }
+                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
                                             break;
                                         }
                                     case "CT":
@@ -231,10 +227,7 @@ namespace Presentation
                                             }
                                             index++;
                                             ContractEmployee tmpFTEmp = new ContractEmployee(fname, lname, dob, sin, cStartD, cStopD, amount);
-                                            if (tmpFTEmp.Validate())
-                                            {
-                                                empList.Add(tmpFTEmp, true);
-                                            }
+                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
                                             break;
                                         }
                                     case "SN":
@@ -256,10 +249,7 @@ namespace Presentation
                                             }
                                             index++;
                                             SeasonalEmployee tmpFTEmp = new SeasonalEmployee(fname, lname, dob, sin, season, pay);
-                                            if (tmpFTEmp.Validate())
-                                            {
-                                                empList.Add(tmpFTEmp, true);
-                                            }
+                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
                                             break;
                                         }
                                 }
@@ -268,6 +258,21 @@ namespace Presentation
                         }
                     case '2':
                         {
+                            string traStr = empList.Traverse();
+                            traStr = traStr.Replace("\r\n", "|");
+                            string tempStr = "";
+                            for (int x = 0; x < traStr.Length; x++ )
+                            {
+                                if(traStr[x] != '\n')
+                                {
+                                    tempStr += traStr[x];
+                                }
+                                else
+                                {
+                                    database.Add(tempStr);
+                                    tempStr = "";
+                                }
+                            }
                             Database.SaveDatabase(database);
                             break;
                         }
@@ -316,34 +321,49 @@ namespace Presentation
                     case '2':
                         {
                             string type = "";
-                            Console.WriteLine("Which type of employee would you like to add?");
-                            Console.WriteLine("1. Part Time Employee    2. Full Time Employee");
-                            Console.WriteLine("3. Seasonal Employee     4. Contract Employee");
-                            input = Console.ReadKey().KeyChar;
-                            switch(input)
+                            bool correct = false;
+                            while (!correct)
                             {
-                                case '1':
-                                    {
-                                        type = "PT";
-                                        break;
-                                    }
-                                case '2':
-                                    {
-                                        type = "FT";
-                                        break;
-                                    }
-                                case '3':
-                                    {
-                                        type = "CT";
-                                        break;
-                                    }
-                                case '4':
-                                    {
-                                        type = "SN";
-                                        break;
-                                    }
+                                Console.WriteLine("Which type of employee would you like to add?");
+                                Console.WriteLine("1. Part Time Employee    2. Full Time Employee");
+                                Console.WriteLine("3. Seasonal Employee     4. Contract Employee");
+                                input = Console.ReadKey().KeyChar;
+                                switch (input)
+                                {
+                                    case '1':
+                                        {
+                                            Console.WriteLine("Enter the Last Name of the new employee");
+                                            type = "PT";
+                                            correct = true;
+                                            break;
+                                        }
+                                    case '2':
+                                        {
+                                            Console.WriteLine("Enter the Last Name of the new employee");
+                                            type = "FT";
+                                            correct = true;
+                                            break;
+                                        }
+                                    case '3':
+                                        {
+                                            Console.WriteLine("Enter the Company Name");
+                                            type = "CT";
+                                            correct = true;
+                                            break;
+                                        }
+                                    case '4':
+                                        {
+                                            Console.WriteLine("Enter the Last Name of the new employee");
+                                            type = "SN";
+                                            correct = true;
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            break;
+                                        }
+                                }
                             }
-                            Console.WriteLine("Enter the name of the new employee");
                             string name = Console.ReadLine();
                             employeeDetailsMenu(name, type);
                             break;
@@ -412,69 +432,416 @@ namespace Presentation
          * RETURN       : None
          * 
          */
-        private static void employeeDetailsMenu(string employee)
+        private static void employeeDetailsMenu(string employeeSIN)
         {
             bool done = false;
+            string temp = "";
+            char input = ' ';
+            Employee tempEmp = null;
+            empList.Traverse(employeeSIN, ref tempEmp);
+            if(tempEmp == null)
+            {
+                Console.WriteLine("There is no employee in the database with that SIN.");
+                done = true;
+            }
             while (!done)
             {
-                Console.WriteLine("\nEMPLOYEE DETAILS FOR {0}", employee);
+                Console.WriteLine("\nEMPLOYEE DETAILS FOR {0}", tempEmp.firstName);
                 Console.WriteLine("1. Specify Base Employee Details");
-                Console.WriteLine("2. Specify the Date of Hire");
-                Console.WriteLine("3. Specify the Date of Termination");
-                Console.WriteLine("4. Specify the Employee's Hourly Rate");
-                Console.WriteLine("9. Quit");
-                char input = Console.ReadKey().KeyChar;
-                switch (input)
+                switch (tempEmp.employeeType)
                 {
-                    case '1':
+                    case "FT":
                         {
-                            Console.WriteLine("Which Value Would You Like to Modify?");
-                            Console.WriteLine("1. Employee Type     2. First Name");
-                            Console.WriteLine("3. Last Name         4. Date of Birth");
-                            Console.WriteLine("5. Social Insurance Number");
+                            FulltimeEmployee tempFTEmp = (FulltimeEmployee)tempEmp;
+                            Console.WriteLine("2. Specify Date of Hire");
+                            Console.WriteLine("3. Specify Date of Termination");
+                            Console.WriteLine("4. Specify Salary");
+                            Console.WriteLine("9. Quit");
                             input = Console.ReadKey().KeyChar;
-                            switch(input)
+                            switch (input)
                             {
                                 case '1':
                                     {
-                                        Console.WriteLine("What is the new Employee Type? (CC)");
+                                        Console.WriteLine("1. Specify First Name");
+                                        Console.WriteLine("2. Specify Last Name");
+                                        Console.WriteLine("3. Specify Date of Birth");
+                                        Console.WriteLine("4. Specify Social Insurance Number");
+                                        Console.WriteLine("9. Quit");
+                                        input = Console.ReadKey().KeyChar;
+                                        switch(input)
+                                        {
+                                            case '1':
+                                                {
+                                                    Console.WriteLine("What is the Employee's First Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempFTEmp.SetFirstName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid First Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '2':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Last Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempFTEmp.SetLastName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Last Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '3':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Date of Birth? (YYYY-MM-DD)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempFTEmp.SetDateOfBirth(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Date of Birth");
+                                                    }
+                                                    break;
+                                                }
+                                            case '4':
+                                                {
+                                                    Console.WriteLine("What is the new Employee's Social Insurance Number? (XXX XXX XXX)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempFTEmp.SetSIN(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Social Insurance Number");
+                                                    }
+                                                    break;
+                                                }
+                                        }
                                         break;
                                     }
                                 case '2':
                                     {
-                                        Console.WriteLine("What is the new First Name?");
+                                        Console.WriteLine("What is the Employee's Date of Hire? (YYYY-MM-DD)");
+                                        temp = Console.ReadLine();
+                                        if(!tempFTEmp.SetDateOfHire(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Date of Hire");
+                                        }
                                         break;
                                     }
                                 case '3':
                                     {
-                                        Console.WriteLine("What is the new Last Name?");
+                                        Console.WriteLine("What is the new Employee's Date of Termination? (YYYY-MM-DD)");
+                                        temp = Console.ReadLine();
+                                        if (!tempFTEmp.SetDateOfTermination(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Date of Termination");
+                                        }
                                         break;
                                     }
                                 case '4':
                                     {
-                                        Console.WriteLine("What is the new Date of Birth? (YYYY-MM-DD)");
+                                        Console.WriteLine("What is the Employee's Salary? (Do not include the '$')");
+                                        temp = Console.ReadLine();if(!tempFTEmp.SetSalary(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Salary");
+                                        }
                                         break;
                                     }
-                                case '5':
+                                case '9':
                                     {
-                                        Console.WriteLine("What is the new Social Insurance Number? (XXX XXX XXX)");
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
                                         break;
                                     }
                             }
                             break;
                         }
-                    case '2':
+                    case "PT":
                         {
-                            //! TODO: Get employee details from user and pass them to the company class' validation method
+                            ParttimeEmployee tempPTEmp = (ParttimeEmployee)tempEmp;
+                            Console.WriteLine("2. Specify Date of Hire");
+                            Console.WriteLine("3. Specify Date of Termination");
+                            Console.WriteLine("4. Specify Hourly Rate");
+                            Console.WriteLine("9. Quit");
+                            input = Console.ReadKey().KeyChar;
+                            switch (input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("1. Specify First Name");
+                                        Console.WriteLine("2. Specify Last Name");
+                                        Console.WriteLine("3. Specify Date of Birth");
+                                        Console.WriteLine("4. Specify Social Insurance Number");
+                                        Console.WriteLine("9. Quit");
+                                        input = Console.ReadKey().KeyChar;
+                                        switch (input)
+                                        {
+                                            case '1':
+                                                {
+                                                    Console.WriteLine("What is the Employee's First Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempPTEmp.SetFirstName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid First Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '2':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Last Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempPTEmp.SetLastName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Last Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '3':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Date of Birth? (YYYY-MM-DD)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempPTEmp.SetDateOfBirth(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Date of Birth");
+                                                    }
+                                                    break;
+                                                }
+                                            case '4':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Social Insurance Number? (XXX XXX XXX)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempPTEmp.SetSIN(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Social Insurance Number");
+                                                    }
+                                                    break;
+                                                }
+                                        }
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the Employee's Date of Hire? (YYYY-MM-DD)");
+                                        temp = Console.ReadLine();
+                                        if (!tempPTEmp.SetDateOfHire(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Date of Hire");
+                                        }
+                                        break;
+                                    }
+                                case '3':
+                                    {
+                                        Console.WriteLine("What is the Employee's Date of Termination? (YYYY-MM-DD)");
+                                        temp = Console.ReadLine();
+                                        if (!tempPTEmp.SetDateOfTermination(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Date of Termination");
+                                        }
+                                        break;
+                                    }
+                                case '4':
+                                    {
+                                        Console.WriteLine("What is the Employee's Hourly Rate? (Do not include the '$')");
+                                        temp = Console.ReadLine(); if (!tempPTEmp.SetHourlyRate(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Hourly Rate");
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    case '9':
+                    case "CT":
                         {
-                            done = true;
+                            ContractEmployee tempCTEmp = (ContractEmployee)tempEmp;
+                            Console.WriteLine("2. Specify Start Date");
+                            Console.WriteLine("3. Specify End Date");
+                            Console.WriteLine("4. Specify Fixed Contract Amount");
+                            Console.WriteLine("9. Quit");
+                            input = Console.ReadKey().KeyChar;
+                            switch (input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("1. Specify Company Name");
+                                        Console.WriteLine("2. Specify Date of Incorporation");
+                                        Console.WriteLine("3. Specify Business Number");
+                                        Console.WriteLine("9. Quit");
+                                        input = Console.ReadKey().KeyChar;
+                                        switch (input)
+                                        {
+                                            case '1':
+                                                {
+                                                    Console.WriteLine("What is the Company's Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempCTEmp.SetLastName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Company Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '3':
+                                                {
+                                                    Console.WriteLine("What is the Company's Date of Incorporation? (YYYY-MM-DD)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempCTEmp.SetDateOfBirth(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Date of Incorporation");
+                                                    }
+                                                    break;
+                                                }
+                                            case '4':
+                                                {
+                                                    Console.WriteLine("What is the Company's Business Number? (XXX XXX XXX)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempCTEmp.SetSIN(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Business Number");
+                                                    }
+                                                    break;
+                                                }
+                                        }
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the Company's Contract Start Date? (YYYY-MM-DD)");
+                                        temp = Console.ReadLine();
+                                        if (!tempCTEmp.SetContractStartDate(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Start Date");
+                                        }
+                                        break;
+                                    }
+                                case '3':
+                                    {
+                                        Console.WriteLine("What is the Company's Contract Stop Date? (YYYY-MM-DD)");
+                                        temp = Console.ReadLine();
+                                        if (!tempCTEmp.SetContractStopDate(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Stop Date");
+                                        }
+                                        break;
+                                    }
+                                case '4':
+                                    {
+                                        Console.WriteLine("What is the Company's Fixed Contract Amount? (Do not include the '$')");
+                                        temp = Console.ReadLine(); if (!tempCTEmp.SetFixedContractAmount(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Contract Amount");
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    default:
+                    case "SN":
                         {
+                            SeasonalEmployee tempSNEmp = (SeasonalEmployee)tempEmp;
+                            Console.WriteLine("2. Specify Season");
+                            Console.WriteLine("3. Specify Piece Pay");
+                            Console.WriteLine("9. Quit");
+                            input = Console.ReadKey().KeyChar;
+                            switch (input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("1. Specify First Name");
+                                        Console.WriteLine("2. Specify Last Name");
+                                        Console.WriteLine("3. Specify Date of Birth");
+                                        Console.WriteLine("4. Specify Social Insurance Number");
+                                        Console.WriteLine("9. Quit");
+                                        input = Console.ReadKey().KeyChar;
+                                        switch (input)
+                                        {
+                                            case '1':
+                                                {
+                                                    Console.WriteLine("What is the Employee's First Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempSNEmp.SetFirstName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid First Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '2':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Last Name?");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempSNEmp.SetLastName(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Last Name");
+                                                    }
+                                                    break;
+                                                }
+                                            case '3':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Date of Birth? (YYYY-MM-DD)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempSNEmp.SetDateOfBirth(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Date of Birth");
+                                                    }
+                                                    break;
+                                                }
+                                            case '4':
+                                                {
+                                                    Console.WriteLine("What is the Employee's Social Insurance Number? (XXX XXX XXX)");
+                                                    temp = Console.ReadLine();
+                                                    if (!tempSNEmp.SetSIN(temp))
+                                                    {
+                                                        Console.WriteLine("Not a valid Social Insurance Number");
+                                                    }
+                                                    break;
+                                                }
+                                        }
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the Season the Employee's working in? (winter, spring, summer, fall)");
+                                        temp = Console.ReadLine();
+                                        if (!tempSNEmp.SetSeason(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Season");
+                                        }
+                                        break;
+                                    }
+                                case '4':
+                                    {
+                                        Console.WriteLine("What is the Employee's Piece Pay? (Do not include the '$')");
+                                        temp = Console.ReadLine(); if (!tempSNEmp.SetPiecePay(temp))
+                                        {
+                                            Console.WriteLine("Not a valid Piece Pay");
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
                 }
@@ -495,35 +862,294 @@ namespace Presentation
         private static void employeeDetailsMenu(string employee, string type)
         {
             bool done = false;
+            string fname = "";
+            string lname = employee;
+            string dob = "";
+            string sin = "";
+            string doh = "";
+            string dot = "";
+            string tmpSal = "";
+            int sal = 0;
+            string tmpRate = "";
+            double rate = 0;
+            string cStartD = "";
+            string cStopD = "";
+            string tmpAmount = "";
+            int amount = 0;
+            string season = "";
+            string tmpPay = "";
+            double pay = 0;
             while (!done)
             {
-                Console.WriteLine("\nEMPLOYEE DETAILS FOR {0}", employee);
+                Console.WriteLine("\nEMPLOYEE DETAILS FOR {0}", lname);
                 Console.WriteLine("1. Specify Base Employee Details");
-                Console.WriteLine("9. Quit");
-                char input = Console.ReadKey().KeyChar;
-                switch (input)
+                switch(type)
                 {
-                    case '1':
+                    case "FT":
                         {
-                            //! TODO: Get employee details from user and pass them to the company class' validation method
+                            Console.WriteLine("2. Specify Date of Hire");
+                            Console.WriteLine("3. Specify Date of Termination");
+                            Console.WriteLine("4. Specify Salary");
+                            Console.WriteLine("9. Quit");
+                            char input = Console.ReadKey().KeyChar;
+                            switch (input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("What is the new Employee's First Name?");
+                                        fname = Console.ReadLine();
+                                        Console.WriteLine("What is the new Employee's Date of Birth? (YYYY-MM-DD)");
+                                        dob = Console.ReadLine();
+                                        Console.WriteLine("What is the new Employee's Social Insurance Number? (XXX XXX XXX)");
+                                        sin = Console.ReadLine();
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the new Employee's Date of Hire? (YYYY-MM-DD)");
+                                        doh = Console.ReadLine();
+                                        break;
+                                    }
+                                case '3':
+                                    {
+                                        Console.WriteLine("What is the new Employee's Date of Termination? (YYYY-MM-DD)");
+                                        dot = Console.ReadLine();
+                                        break;
+                                    }
+                                case '4':
+                                    {
+                                        while (true)
+                                        {
+                                            Console.WriteLine("What is the new Employee's Salary? (Do not include the '$')");
+                                            tmpSal = Console.ReadLine();
+                                            try
+                                            {
+                                                sal = Int32.Parse(tmpSal);
+                                                break;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Not a number");
+                                            }
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    case '2':
+                    case "PT":
                         {
-                            //! TODO: Get employee details from user and pass them to the company class' validation method
+                            Console.WriteLine("2. Specify Date of Hire");
+                            Console.WriteLine("3. Specify Date of Termination");
+                            Console.WriteLine("4. Specify Hourly Rate");
+                            Console.WriteLine("9. Quit");
+                            char input = Console.ReadKey().KeyChar;
+                            switch (input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("What is the new Employee's First Name?");
+                                        fname = Console.ReadLine();
+                                        Console.WriteLine("What is the new Employee's Date of Birth? (YYYY-MM-DD)");
+                                        dob = Console.ReadLine();
+                                        Console.WriteLine("What is the new Employee's Social Insurance Number? (XXX XXX XXX)");
+                                        sin = Console.ReadLine();
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the new Employee's Date of Hire? (YYYY-MM-DD)");
+                                        doh = Console.ReadLine();
+                                        break;
+                                    }
+                                case '3':
+                                    {
+                                        Console.WriteLine("What is the new Employee's Date of Termination? (YYYY-MM-DD)");
+                                        dot = Console.ReadLine();
+                                        break;
+                                    }
+                                case '4':
+                                    {
+                                        while (true)
+                                        {
+                                            Console.WriteLine("What is the new Employee's Hourly Rate? (Do not include the '$')");
+                                            tmpRate = Console.ReadLine();
+                                            try
+                                            {
+                                                rate = Double.Parse(tmpRate);
+                                                break;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Not a number");
+                                            }
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    case '9':
+                    case "CT":
                         {
-                            done = true;
+                            Console.WriteLine("2. Specify Contract Start Date");
+                            Console.WriteLine("3. Specify Contract End Date");
+                            Console.WriteLine("4. Specify Fixed Contract Amount");
+                            Console.WriteLine("9. Quit");
+                            char input = Console.ReadKey().KeyChar;
+                            switch(input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("What is the new Company's Date of Incorporation? (YYYY-MM-DD)");
+                                        dob = Console.ReadLine();
+                                        Console.WriteLine("What is the new Company's Business Number? (XXXXX XXXX)");
+                                        sin = Console.ReadLine();
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the Contract's Start Date? (YYYY-MM-DD)");
+                                        cStartD = Console.ReadLine();
+                                        break;
+                                    }
+                                case '3':
+                                    {
+                                        Console.WriteLine("What is the Contract's End Date? (YYYY-MM-DD)");
+                                        cStopD = Console.ReadLine();
+                                        break;
+                                    }
+                                case '4':
+                                    {
+                                        while (true)
+                                        {
+                                            Console.WriteLine("What is the Contract's Fixed Amount? (Do not include the '$')");
+                                            tmpAmount = Console.ReadLine();
+                                            try
+                                            {
+                                                amount = Int32.Parse(tmpAmount);
+                                                break;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Not a number");
+                                            }
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    default:
+                    case "SN":
                         {
+                            Console.WriteLine("2. Specify Season");
+                            Console.WriteLine("3. Specify Piece Pay");
+                            Console.WriteLine("9. Quit");
+                            char input = Console.ReadKey().KeyChar;
+                            switch (input)
+                            {
+                                case '1':
+                                    {
+                                        Console.WriteLine("What is the new Employee's First Name?");
+                                        fname = Console.ReadLine();
+                                        Console.WriteLine("What is the new Employee's Date of Birth? (YYYY-MM-DD)");
+                                        dob = Console.ReadLine();
+                                        Console.WriteLine("What is the new Employee's Social Insurance Number? (XXX XXX XXX)");
+                                        sin = Console.ReadLine();
+                                        break;
+                                    }
+                                case '2':
+                                    {
+                                        Console.WriteLine("What is the Season the new Employee's working in? (winter, spring, summer, fall)");
+                                        season = Console.ReadLine();
+                                        break;
+                                    }
+                                case '3':
+                                    {
+                                        while (true)
+                                        {
+                                            Console.WriteLine("What is the new Employee's Piece Pay? (Do not include the '$')");
+                                            tmpPay = Console.ReadLine();
+                                            try
+                                            {
+                                                pay = Double.Parse(tmpPay);
+                                                break;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Not a number");
+                                            }
+                                        }
+                                        break;
+                                    }
+                                case '9':
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
                             break;
                         }
                 }
-                break;
+            }
+            /* Creating employees
+             */
+            switch(type)
+            {
+                case "FT":
+                    {
+                        FulltimeEmployee tmpFTEmp = new FulltimeEmployee(fname, lname, dob, sin, doh, dot, sal);
+                        empList.Add(tmpFTEmp, tmpFTEmp.Validate());
+                        break;
+                    }
+                case "PT":
+                    {
+                        ParttimeEmployee tmpPTEmp = new ParttimeEmployee(fname, lname, dob, sin, doh, dot, rate);
+                        empList.Add(tmpPTEmp, tmpPTEmp.Validate());
+                        break;
+                    }
+                case "CT":
+                    {
+                        ContractEmployee tmpCTEmp = new ContractEmployee(fname, lname, dob, sin, cStartD, cStopD, amount);
+                        empList.Add(tmpCTEmp, tmpCTEmp.Validate());
+                        break;
+                    }
+                case "SN":
+                    {
+                        SeasonalEmployee tmpSNEmp = new SeasonalEmployee(fname, lname, dob, sin, season, pay);
+                        empList.Add(tmpSNEmp, tmpSNEmp.Validate());
+                        break;
+                    }
             }
         }
     }

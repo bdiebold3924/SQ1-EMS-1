@@ -19,9 +19,6 @@ namespace TheCompany
         public string socialInsuranceNumber;
 
 
-        int current = 0, next = 0, last = 0;
-
-
         public Company()    //constructor that sets the company container to be empty.
         {
 
@@ -52,18 +49,22 @@ namespace TheCompany
             foreach (FulltimeEmployee e in theCompany)
             {
                 retStr += e.Details();
+                retStr += "\n";
             }
             foreach (ParttimeEmployee e in theCompany)
             {
                 retStr += e.Details();
+                retStr += "\n";
             }
             foreach (SeasonalEmployee e in theCompany)
             {
                 retStr += e.Details();
+                retStr += "\n";
             }
             foreach (ContractEmployee e in theCompany)
             {
                 retStr += e.Details();
+                retStr += "\n";
             }
             if (retStr == "")
             {
@@ -106,16 +107,23 @@ namespace TheCompany
             return retStr;
         }
 
+        public void Traverse(string SIN, ref Employee tempEmp) //allows for traversal through the company container 
+        {
+            foreach (Employee e in theCompany)
+            {
+                if (e.socialInsuranceNumber == SIN)
+                {
+                    tempEmp = e;
+                }
+            }
+        }
+
         public void Modify()   //allows for modification to the whichever current object is being looked at and wants to be modified.
         {
 
         }
         ~Company()   //destructor for the company 
         {
-            Console.WriteLine("Company list cleaned and destroyed.");
         }
-
-
     }
-
 }
