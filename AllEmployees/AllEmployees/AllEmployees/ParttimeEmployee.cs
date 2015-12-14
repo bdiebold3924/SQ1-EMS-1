@@ -82,6 +82,13 @@ namespace AllEmployees
                 return (false);
 
             }
+            double theRate = Convert.ToDouble(newRate);
+            if (theRate < 0)
+            {
+                Logger.Log("ParttimeEmployee", "SetHourlyRate", "Hourly Rate is invalid.");
+                return false;
+            }
+            hourlyRate = theRate;
             Logger.Log("ParttimeEmployee", "SetHourlyRate", "Hourly Rate is valid and set.");
             return true;
         }
