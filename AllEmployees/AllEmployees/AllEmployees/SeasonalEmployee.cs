@@ -133,6 +133,13 @@ namespace AllEmployees
                 return (false);
 
             }
+            double theRate = Convert.ToDouble(newPay);
+            if (theRate < 0)
+            {
+                Logger.Log("ParttimeEmployee", "SetHourlyRate", "Hourly Rate is invalid.");
+                return false;
+            }
+            piecePay = theRate;
             Logger.Log("SeasonalEmployee", "SetPiecePay", "PiecePay is valid, and set");
             return (true);
         }
