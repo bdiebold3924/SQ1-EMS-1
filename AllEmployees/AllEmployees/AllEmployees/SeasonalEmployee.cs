@@ -8,18 +8,34 @@ using System.Globalization;
 
 namespace AllEmployees
 {
+    /**
+    Class Name: SeasonalEmployee
+    Purpose: The following class is a child of the Employee class and holds all attributes and methods that are specific 
+            to the seasonal employee type.
+            */
     public class SeasonalEmployee : Employee
     {
         string season; //includes Winter Spring Summer Fall
         double piecePay;
-
+        
+        /**
+        Name: SeasonalEmployee
+        Params: None
+        Purpose: The following is a default constructor for the SeasonalEmployee class that sets all
+                class attribute values to zero values
+                */
         public SeasonalEmployee()   //default constructor
         {
             season = null;
             piecePay = 0.0;
 
         }
-
+         /**
+        Name: SeasonalEmployee
+        Params: string _firstName, string _lastName
+        Purpose: The following is a constructor for the SeasonalEmployee class that takes the first and last name of the employee
+                and sets those values as well as sets all class attribute values to zero values.
+                */
         public SeasonalEmployee(string _firstName, string _lastName)
         {
             season = null;
@@ -29,7 +45,12 @@ namespace AllEmployees
             lastName = String.Copy(_lastName);
 
         }
-
+        /**
+        Name: SeasonalEmployee
+        Params: string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newSeason, double newPiecePay
+        Purpose: The following is a constructor for the SeasonalEmployee class that takes all class attribute values as parameters 
+                and sets the class attributes to these specific pass values.
+                */
         public SeasonalEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newSeason, double newPiecePay)
         {
             if (String.Compare("winter", newSeason) == 0)
@@ -52,15 +73,20 @@ namespace AllEmployees
             {
                 season = "";
             }
-
+            
             piecePay = newPiecePay;
             employeeType = "SN";
         }
 
+        /**
+        Name: SetSeason
+        Params: string newSeason
+        Use: The following method is a mutator for the season attribute of the SeasonalEmployee class
+        */
         public bool SetSeason(string newSeason) //mutator for the season attribute
         {
             string temp = newSeason;
-            temp = temp.ToLower();
+            temp = temp.ToLower();  //set all characters of the string to lower so that case does not matter
             //now check to see if the season inputted was valid and if so make it the official season for the attribute
             if (String.Compare("winter", temp) == 0)
             {
@@ -84,23 +110,37 @@ namespace AllEmployees
             }
             else
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "SetSeason", "Season is invalid, not a real season");
                 return (false);
             }
+            Logger.Log("SeasonalEmployee", "SetSeason", "Season is valid and set");
             return (true);
         }
-
+        
+        
+        /**
+        Name: SetPiecePay
+        Params: string newPay
+        Use: The following method is a mutator for the piecePay attribute of the SeasonalEmployee class. Returns false if 
+            the value to be set does not adhere to requirements and true if the parameter does and the class attribute was 
+            set
+            */
         public bool SetPiecePay(string newPay)   //mutator for the seasonal piece pay value 
         {
             if (!double.TryParse(newPay, out piecePay))
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "SetPiecePay", "PiecePay is invalid, not a valid number);
                 return (false);
 
             }
+            Logger.Log("SeasonalEmployee", "SetPiecePay", "PiecePay is valid, and set");
             return (true);
         }
-
+         /** Details()
+            Params: None:
+            Use: The following method is a string builder that build a large string of all current attribute values within
+                the class. After completion of building this string the method then returns that string to the caller.
+                */
         public string Details()
         {
             string theDetails = "Employee Details:\n";
@@ -130,9 +170,15 @@ namespace AllEmployees
             theDetails += piecePay;
             theDetails += Environment.NewLine;
 
-
+            Logger.Log("SeasonalEmployee", "Details", theDetails);  //log the details as well
             return (theDetails);
         }
+        /**
+        Validate()
+        Params: None
+        Use: This method check all of the attribute values for validity based on requirements of what makes a real contractEmployee.
+            if any attribute value is invalid the method will return false. If all pass the requirements the method will return true.
+            */
         public bool Validate()
         {
             //first validate first name... 
@@ -158,7 +204,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL
+                    Logger.Log("SeasonalEmployee", "Validate", "First Name is invalid, contains invalid characters");
                     return (false);
                 }
 
@@ -187,7 +233,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL
+                    Logger.Log("SeasonalEmployee", "Validate", "Last Name is invalid, contains invalid characters");
                     return (false);
                 }
             }
@@ -206,7 +252,7 @@ namespace AllEmployees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                // LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "SIN # is invalid, invalid length");
                 return (false);
 
             }
@@ -218,7 +264,7 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9')
                 {
-                    //LOG CALL
+                    Logger.Log("SeasonalEmployee", "Validate", "SIN # is invalid, invalid length");
                     return (false);
                 }
             }
@@ -257,7 +303,7 @@ namespace AllEmployees
             //check if intTotal is equal to the 9th digit of the SIN, if so, SIN is valid...
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "SIN # is invalid, does not adhere to SIN # protocol");
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
@@ -267,43 +313,46 @@ namespace AllEmployees
 
             if (String.Compare("winter", season) != 0)
             {
-                // LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
                 return (false);
             }
             else if (String.Compare("spring", season) != 0)
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
                 return (false);
             }
             else if (String.Compare("summer", season) != 0)
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
                 return (false);
             }
             else if (String.Compare("fall", season) != 0)
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
                 return (false);
             }
             else if (String.Compare("", season) != 0)
             {
-                // LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
                 return (false);
             }
 
             //now validate piece pay
             if (piecePay <= 0.0)
             {
-                //LOG CALL
+                Logger.Log("SeasonalEmployee", "Validate", "Piece Pay is invalid, must be a number greater than zero.");
                 return (false);
             }
-
-
-            //now validate Date of birth
-
+            // all attributes validated..
+            Logger.Log("SeasonalEmployee", "Validate", "All attributes of the SeasonalEmployee are valid.");
             return (true);
         }
 
+        /**
+        Name: ~SeasonalEmployee
+        Params: None
+        Use: The following is a destructor for the SeasonalEmployee Class
+        */
         ~SeasonalEmployee() //destructor for the seasonal employee
         {
         }
