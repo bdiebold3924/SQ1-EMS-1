@@ -76,7 +76,7 @@ namespace AllEmployees
             }
 
             tmpSal = Convert.ToInt32(newSalary);
-            if (tmpSal <= 0)
+            if (tmpSal < 0)
             {
                 Logger.Log("FullTimeEmployee", "SetSalary","Salary is invalid, salary is less than or equal to zero");
                 return (false);
