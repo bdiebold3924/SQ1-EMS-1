@@ -41,44 +41,39 @@ namespace AllEmployees
             employeeType = "FT";
         }
 
-        public bool setSalary()
+        public bool SetSalary(string newSalary)
         {
-            int newSalary = 0;
-            string input = null;
-            Console.WriteLine("Enter the salary for the employee");
-            input = Console.ReadLine();
+            int tmpSal = 0;
 
-            foreach (char c in input)
+            foreach (char c in newSalary)
             {
                 if (Char.IsDigit(c) == false)
                 {
-                    // LOG CALL  Console.WriteLine("Invalid salary input.");
+                    // LOG CALL
                     return (false);
                 }
             }
 
-            newSalary = Convert.ToInt32(input);
-            if (newSalary <= 0)
+            tmpSal = Convert.ToInt32(newSalary);
+            if (tmpSal <= 0)
             {
-                // LOG CALL Console.WriteLine("Invalid salary input.");
+                // LOG CALL
                 return (false);
             }
             return (true);
         }
 
         //set date of hire and date of termination methods.. follow the same date validation as DOB
-        public bool setDateOfHire()
+        public bool SetDateOfHire(string newDateOfHire)
         {
-            string temp;
+            string temp = newDateOfHire;
             DateTime result;
 
-            Console.WriteLine("Enter the date of hire. YYYY-MM-DD");
-            temp = Console.ReadLine();
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
 
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL Console.WriteLine("Invalid date.");
+                // LOG CALL
                 return (false);
             }
             dateOfHire = String.Copy(temp);
@@ -89,13 +84,11 @@ namespace AllEmployees
             return true;
         }
 
-        public bool setDateOfTermination()
+        public bool SetDateOfTermination(string newDateOfTermination)
         {
-            string temp;
+            string temp = newDateOfTermination;
             DateTime result;
 
-            Console.WriteLine("Enter the date of hire. YYYY-MM-DD");
-            temp = Console.ReadLine();
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
             if (String.Compare("", temp) == 0)
             {
@@ -104,7 +97,7 @@ namespace AllEmployees
             }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL Console.WriteLine("Invalid date.");
+                // LOG CALL
                 return (false);
             }
             dateOfTermination = String.Copy(temp);
@@ -140,7 +133,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    // LOG CALL Console.Write("Invalid first name.");
+                    // LOG CALL
                     return (false);
                 }
 
@@ -169,7 +162,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    // LOG CALL  Console.Write("Invalid last name.");
+                    // LOG CALL
                     return (false);
                 }
             }
@@ -188,7 +181,7 @@ namespace AllEmployees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                // LOG CALL Console.WriteLine("Invalid SIN number.");
+                // LOG CALL
                 return (false);
 
             }
@@ -200,7 +193,7 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9')
                 {
-                    // LOG CALL Console.WriteLine("Invalid SIN number.");
+                    // LOG CALL
                     return (false);
                 }
             }
@@ -239,11 +232,7 @@ namespace AllEmployees
             //check if intTotal is equal to the 9th digit of the SIN, if so, SIN is valid...
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
-
-
-
-                // Console.WriteLine(socialInsuranceNumber);
-                //LOG CALL Console.WriteLine("Invalid SIN number.");
+                //LOG CALL
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
@@ -257,26 +246,23 @@ namespace AllEmployees
 
             dateOfBirth = Regex.Replace(dateOfBirth, @"-+", ""); //removes all whitespace from the inputted date
 
-            // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL Console.WriteLine("Invalid date of birth.");
+                // LOG CALL
                 return (false);
             }
 
 
             dateOfBirth = dateOfBirth.Insert(4, "-");
             dateOfBirth = dateOfBirth.Insert(7, "-");
-            //  Console.WriteLine(dateOfBirth);          
 
             //now validate date of hire 
 
             dateOfHire = Regex.Replace(dateOfHire, @"-+", ""); //removes all whitespace from the inputted date
 
-            // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL Console.WriteLine("Invalid date of hire.");
+                // LOG CALL
                 return (false);
             }
 
@@ -295,7 +281,7 @@ namespace AllEmployees
             }
             else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
             {
-                // LOG CALL  Console.WriteLine("Invalid date of termination.");
+                // LOG CALL
                 return (false);
             }
 
@@ -305,7 +291,7 @@ namespace AllEmployees
             //validate salary
             if (salary <= 0)
             {
-                // LOG CALL  Console.WriteLine("Invalid Salary");
+                // LOG CALL
                 return (false);
             }
             return (true);
@@ -314,15 +300,6 @@ namespace AllEmployees
 
         public string Details()
         {
-            /*Console.WriteLine("Employee Details: ");
-            Console.WriteLine("First Name: " + firstName);
-            Console.WriteLine("Last Name: " + lastName);
-            Console.WriteLine("Date of Birth: " + dateOfBirth);
-            Console.WriteLine("SIN: " + socialInsuranceNumber);
-            Console.WriteLine("Date of Hire: " + dateOfHire);
-            Console.WriteLine("Date of termination " + dateOfTermination);
-            Console.WriteLine("Salary: " + salary*/
-
             string theDetails = "Employee Details:\n";
 
             theDetails = String.Concat(theDetails, "First Name: ");
@@ -359,7 +336,6 @@ namespace AllEmployees
 
         ~FulltimeEmployee()     //destructor for the FullTimeEmployee class
         {
-            //Console.WriteLine("FullTime employee cleaned and destroyed.");
         }
 
 

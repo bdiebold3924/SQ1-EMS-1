@@ -55,26 +55,24 @@ namespace AllEmployees
 
         ~Employee()
         {
-           // Console.WriteLine("Employee parent class cleaned and destroyed.");
         }
         /**
         * \brief Mutator used to set the employees first name
         * \param - firstName - <b>string<\b> - represents the employee's first name
         */
-        public bool SetFirstName()
+        public bool SetFirstName(string newFirstName)
         {
 
             string tester = string.Empty;
 
-            Console.Write("Enter the employee's first name.");
-            firstName = Console.ReadLine();
+            firstName = newFirstName;
 
             //validate the first name...
             //check if name is empty string...
             if (firstName.Equals(""))
             {
                 //first name is allowed to be empty, return true
-               // LOG CALL Console.Write("Valid Name");
+               // LOG CALL
                 return true;
             }
 
@@ -102,14 +100,12 @@ namespace AllEmployees
                 else
                 {
                     //LOG CALL
-                    //Console.Write("Invalid first name...");
                     firstName = null;
                     return (false);
                 }
 
             }
             //LOG CALL
-           // Console.WriteLine("First Name is Valid.");
             return true;
         }
 
@@ -117,20 +113,18 @@ namespace AllEmployees
        * \brief Mutator used to set the employees last name
        * \param - lastName - <b>string<\b> - represents the employee's last name
        */
-        public bool setLastName()
+        public bool SetLastName(string newLastName)
         {
             string tester = string.Empty;
 
-            Console.WriteLine("Enter the employee's last name.");
-
-            lastName = Console.ReadLine();
+            lastName = newLastName;
 
             //validate the last name...
             //check if name is empty string...
             if (lastName.Equals(""))
             {
                 //last name is allowed to be empty, return true
-               //LOG CALL Console.Write("Valid Last Name");
+               //LOG CALL
                 return true;
             }
 
@@ -157,47 +151,43 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL //Console.Write("Invalid last name...");
+                    //LOG CALL
                     lastName = null;
                     return (false);
                 }
 
             }
-           //LOG CALL  Console.WriteLine("last Name is Valid.");
+           //LOG CALL
             return true;
         }
 
         /**
     * \brief Mutator used to set the employees dateOfBirth
     */
-        public bool setDateOfBirth()
+        public bool SetDateOfBirth(string newBirthDay)
         {
             string temp;
             DateTime result;
 
-            Console.WriteLine("Enter the date of birth (YYYY-MM-DD");
-            temp = Console.ReadLine();
+            temp = newBirthDay;
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
 
-            // Console.WriteLine(temp);
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL Console.WriteLine("Invalid date.");
+                // LOG CALL
                 return (false);
             }
             dateOfBirth = String.Copy(temp);
 
             dateOfBirth = dateOfBirth.Insert(4, "-");
             dateOfBirth = dateOfBirth.Insert(7, "-");
-            //  Console.WriteLine(dateOfBirth);          
             return (true);
 
         }
 
-        public bool setSIN()
+        public bool SetSIN(string newSIN)
         {
-            Console.WriteLine("Enter the employee's 9 digit SIN number");
-            socialInsuranceNumber = Console.ReadLine();
+            socialInsuranceNumber = newSIN;
 
             int intCount = 0;
             int intEven = 0;
@@ -258,19 +248,17 @@ namespace AllEmployees
             if (intTotal == (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
                 //SIN is valid
-               // LOG CALL  Console.WriteLine("Valid SIN.");
+               // LOG CALL
 
-                //Console.WriteLine(socialInsuranceNumber);
 
                 socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
                 socialInsuranceNumber = socialInsuranceNumber.Insert(7, " ");
-
-                //Console.WriteLine(socialInsuranceNumber);
+                
 
                 return (true);
             }
 
-            // LOG CALL Console.WriteLine("Invalid SIN");
+            // LOG CALL
             socialInsuranceNumber = null;
             return (false);
         }

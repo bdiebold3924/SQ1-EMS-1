@@ -1,0 +1,20 @@
+The following changes were made to the Presentation class library, its individual classes, and their methods:
+1. Finished the save database option in fileManagementMenu().
+2. Added code to create an employee of each type.
+3. Added code to modify employees of each.
+
+The following changes were made to the TheCompany class library, its individual classes, and their methods:
+1. Added "\n" character after each call to Details() in Traverse().
+2. Added a third Traverse method that takes a string for the SIN to search for and returns the found employee as a reference through a second parameter.
+3. Removed the Console.WriteLine from the destructor.
+
+The following changes were made to the AllEmployees class library, its individual classes, and their methods:
+1. Changed the names of all mutators to match SET naming conventions (camel case with first letter capitalized.
+2. Removed ALL Console.WriteLine and Console.ReadLine calls from all methods.
+
+The following changes were made to the SupportClass class library, its individual classes, and their methods:
+1. Made a new solution called Supporting because SupportClass was not building and was not named properly.
+
+The following changes were made to the Supporting class library, its individual classes, and their methods:
+1. Added a parameter to LoadDatabase for the name of the file to be opened.
+2. Hard coded the directory path in LoadDatabase to the "/DBase/" directory.

@@ -57,11 +57,9 @@ namespace AllEmployees
             employeeType = "SN";
         }
 
-        public bool setSeason() //mutator for the season attribute
+        public bool SetSeason(string newSeason) //mutator for the season attribute
         {
-            string temp = null;
-            Console.WriteLine("Enter the season the employee is working in");
-            temp = Console.ReadLine();
+            string temp = newSeason;
             temp = temp.ToLower();
             //now check to see if the season inputted was valid and if so make it the official season for the attribute
             if (String.Compare("winter", temp) == 0)
@@ -86,19 +84,17 @@ namespace AllEmployees
             }
             else
             {
-                //LOG CALL    Console.WriteLine("Invalid input for the employee's season of work.");
+                //LOG CALL
                 return (false);
             }
             return (true);
         }
 
-        public bool setPiecePay()   //mutator for the seasonal piece pay value 
+        public bool SetPiecePay(string newPay)   //mutator for the seasonal piece pay value 
         {
-            Console.WriteLine("Enter the seasonal employee's piece pay.");
-
-            if (!double.TryParse(Console.ReadLine(), out piecePay))
+            if (!double.TryParse(newPay, out piecePay))
             {
-                //LOG CALL  Console.WriteLine("Invalid piece pay input");
+                //LOG CALL
                 return (false);
 
             }
@@ -107,14 +103,6 @@ namespace AllEmployees
 
         public string Details()
         {
-            /*  Console.WriteLine("Employee Details: ");
-                Console.WriteLine("First Name: " + firstName);
-                Console.WriteLine("Last Name: " + lastName);
-                Console.WriteLine("Date of Birth: " + dateOfBirth);
-                Console.WriteLine("SIN: " + socialInsuranceNumber);
-                Console.WriteLine("Season: " + season);
-                Console.WriteLine("Piece Pay ($/piece): " + piecePay); */
-
             string theDetails = "Employee Details:\n";
 
             theDetails = String.Concat(theDetails, "First Name: ");
@@ -170,7 +158,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL Console.Write("Invalid first name.");
+                    //LOG CALL
                     return (false);
                 }
 
@@ -199,7 +187,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL Console.Write("Invalid last name.");
+                    //LOG CALL
                     return (false);
                 }
             }
@@ -218,7 +206,7 @@ namespace AllEmployees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                // LOG CALL Console.WriteLine("Invalid SIN number.");
+                // LOG CALL
                 return (false);
 
             }
@@ -230,7 +218,7 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9')
                 {
-                    //LOG CALL          Console.WriteLine("Invalid SIN number.");
+                    //LOG CALL
                     return (false);
                 }
             }
@@ -269,11 +257,7 @@ namespace AllEmployees
             //check if intTotal is equal to the 9th digit of the SIN, if so, SIN is valid...
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
-
-
-
-                // Console.WriteLine(socialInsuranceNumber);
-                //LOG CALL Console.WriteLine("Invalid SIN number.");
+                //LOG CALL
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
@@ -283,34 +267,34 @@ namespace AllEmployees
 
             if (String.Compare("winter", season) != 0)
             {
-                // LOG CALL             Console.WriteLine("Invalid season");
+                // LOG CALL
                 return (false);
             }
             else if (String.Compare("spring", season) != 0)
             {
-                //LOG CALL  Console.WriteLine("Invalid season");
+                //LOG CALL
                 return (false);
             }
             else if (String.Compare("summer", season) != 0)
             {
-                //LOG CALL    Console.WriteLine("Invalid season");
+                //LOG CALL
                 return (false);
             }
             else if (String.Compare("fall", season) != 0)
             {
-                //LOG CALL Console.WriteLine("Invalid season");
+                //LOG CALL
                 return (false);
             }
             else if (String.Compare("", season) != 0)
             {
-                // LOG CALLConsole.WriteLine("Invalid season");
+                // LOG CALL
                 return (false);
             }
 
             //now validate piece pay
             if (piecePay <= 0.0)
             {
-                //LOG CALL Console.WriteLine("Invalid Piece pay");
+                //LOG CALL
                 return (false);
             }
 
@@ -322,7 +306,6 @@ namespace AllEmployees
 
         ~SeasonalEmployee() //destructor for the seasonal employee
         {
-            //  Console.WriteLine("Seasonal employee class cleaned and destroyed");
         }
     }
 }
