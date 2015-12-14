@@ -8,19 +8,35 @@ using System.Globalization;
 
 namespace AllEmployees
 {
+    
+    /**
+    Class Name: ParttimeEmployee
+    Purpose: This class is a child of the Employee class and contains all attributes and methods specific to the 
+            part time employee type. 
+    */
     public class ParttimeEmployee : Employee
     {
         string dateOfHire;
         string dateOfTermination;
         double hourlyRate;
 
+        /**
+        Name: ParttimeEmployee()
+        Params: None
+        Use: This method is a default constructor that sets all attribute values of the parttime employee class to zero values.
+        */
         public ParttimeEmployee()   //default constructor sets all attributes to null/zero
         {
             dateOfHire = null;
             dateOfTermination = null;
             hourlyRate = 0.0;
         }
-
+          /**
+        Name: ParttimeEmployee()
+        Params: string _FirstName, string _LastName
+        Use: This method is a constructor that takes the first and last name of the employee, sets those values, as well as 
+            sets all other class attribute values to zero values.
+        */
         public ParttimeEmployee(string _FirstName, string _LastName)    //constructor that takes the first and last name
         {
             dateOfHire = null;
@@ -31,6 +47,12 @@ namespace AllEmployees
             lastName = String.Copy(_LastName);
         }
 
+         /**
+        Name: ParttimeEmployee()
+        Params: string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newDateOfHire, string newDateOfTermination, double newHourlyRate
+        Use: This method is a constructor that takes in all values for the parttime employee as parameters and sets the attribute values 
+            to these inputs.
+        */
         public ParttimeEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newDateOfHire, string newDateOfTermination, double newHourlyRate)    //constructor taking all attribute values
         {
             dateOfHire = String.Copy(newDateOfHire);
@@ -38,23 +60,38 @@ namespace AllEmployees
             hourlyRate = newHourlyRate;
             employeeType = "PT";
         }
-
+        /**
+        Name: ~ParttimeEmployee()
+        Params: None
+        Use: The following is a destructor for the parttime employee class
+        */
         ~ParttimeEmployee() //destructor for the parttime employee class
         {
         }
 
+        /**
+        Name: SetHourlyRate
+        Params: string newRate
+        Use: The following method is a mutator for the hourlyRate attribute of the ParttimeEmployee class
+        */
         public bool SetHourlyRate(string newRate)
         {
             if (!double.TryParse(newRate, out hourlyRate))
             {
-                // LOG CALL
+                Logger.Log("ParttimeEmployee", "SetHourlyRate", "Hourly Rate is invalid.");
                 return (false);
 
             }
-
+            Logger.Log("ParttimeEmployee", "SetHourlyRate", "Hourly Rate is valid and set.");
             return true;
         }
-
+        
+        /** 
+        Name: Details()
+        Params: None
+        Use: The following method is a string builder that builds and returns a string that provides feedback on 
+            what the value of every attribute in the current ParttimeEmployee class is set to.
+            */
         public string Details()
         {
             string theDetails = "Employee Details:\n";
@@ -88,12 +125,17 @@ namespace AllEmployees
             theDetails += Environment.NewLine;
 
 
-
+            Logger.Log("ParttimeEmployee", "Details", theDetails); // log the details
             return (theDetails);
         }
 
         //date validation for hire and termination follows same as DOB
 
+        /**
+        Name: SetDateOfHire
+        Params: string newDateOfHire
+        Use: The following method is a mutator for the dateOfHire attribute of the ParttimeEmployee Class
+        */
         public bool SetDateOfHire(string newDateOfHire)
         {
             string temp = newDateOfHire;
@@ -103,16 +145,22 @@ namespace AllEmployees
 
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                // LOG CALL
+                 Logger.Log("ParttimeEmployee", "SetDateOfHire", "Date of Hire is invalid.");
                 return (false);
             }
             dateOfHire = String.Copy(temp);
 
             dateOfHire = dateOfHire.Insert(4, "-");
             dateOfHire = dateOfHire.Insert(7, "-");
-
+            Logger.Log("ParttimeEmployee", "SetDateOfHire","Date Of Hire is valid.");
             return true;
         }
+        
+        /** 
+        Name: SetDateOfTermination
+        Params: newDateOfTermination
+        Use: The following method is a mutator for the dateOfTermination attribute of the ParttimeEmployee class
+        */
         public bool SetDateOfTermination(string newDateOfTermination)
         {
             string temp = newDateOfTermination;
@@ -123,20 +171,29 @@ namespace AllEmployees
             {
                 //allowed to be blank... 
                 dateOfTermination = String.Copy(temp);
+                Logger.Log("ParttimeEmployee", "SetDateOfTermination", "Date Of Termination is valid.");
+                return (true);
             }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                //LOG CALL
+                Logger.Log("ParttimeEmployee", "SetDateOfTermination", "Date Of Termination is invalid.");
                 return (false);
             }
             dateOfTermination = String.Copy(temp);
 
             dateOfTermination = dateOfTermination.Insert(4, "-");
             dateOfTermination = dateOfTermination.Insert(7, "-");
-
+            Logger.Log("ParttimeEmployee", "SetDateOfTermination", "Date Of Termination is valid.");
             return true;
         }
 
+        /**
+        Name: Validate
+        Params: None
+        Use: The following method is used to validate all attributes of the ParttimeEmployee class to the requirements of 
+            what a parttime employee must have to be stored within the company. If any value comes back as invalid the 
+            method will return false. Only if all attributes come back as valid will it return true.
+            */
         public bool Validate()
         {
             //first validate first name... 
@@ -162,7 +219,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL
+                    Logger.Log("ParttimeEmployee", "Validate", "First Name is invalid");
                     return (false);
                 }
 
@@ -191,7 +248,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    //LOG CALL
+                    Logger.Log("ParttimeEmployee", "Validate", "Last Name is invalid");
                     return (false);
                 }
             }
@@ -210,7 +267,7 @@ namespace AllEmployees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                // LOG CALL
+                Logger.Log("ParttimeEmployee", "Validate", "SIN # is invalid, length is incorrect");
                 return (false);
 
             }
@@ -222,7 +279,7 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9')
                 {
-                    // LOG CALL
+                    Logger.Log("ParttimeEmployee", "Validate", "SIN # invalid, contains illegal characters");
                     return (false);
                 }
             }
@@ -261,7 +318,7 @@ namespace AllEmployees
             //check if intTotal is equal to the 9th digit of the SIN, if so, SIN is valid...
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
-                // LOG CALL
+                Logger.Log("ParttimeEmployee", "Validate", "SIN # is invalid, does not adhere to SIN # protocol");
                 return (false);
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
@@ -277,7 +334,7 @@ namespace AllEmployees
 
             if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                //LOG CALL
+                Logger.Log("ParttimeEmployee", "Validate", "Date of Birth is invalid, not a real date.");
                 return (false);
             }
 
@@ -291,7 +348,7 @@ namespace AllEmployees
 
             if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                //LOG CALL
+                Logger.Log("ParttimeEmployee", "Validate", "Date of Hire is invalid, not a real date.");
                 return (false);
             }
 
@@ -310,7 +367,7 @@ namespace AllEmployees
             }
             else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
             {
-                //LOG CALL
+                Logger.Log("ParttimeEmployee", "Validate", "Date of Termination is invalid, not a real date");
                 return (false);
             }
 
@@ -320,9 +377,10 @@ namespace AllEmployees
             //validate salary
             if (hourlyRate <= 0.0)
             {
-                // LOG CALL
+                Logger.Log("ParttimeEmployee", "Validate", "Hourly Rate is invalid, cannot be less than or equal to zero");
                 return (false);
             }
+            Logger.Log("ParttimeEmployee", "Validate", "All Attributes are valid.");
             return (true);
         }
 
