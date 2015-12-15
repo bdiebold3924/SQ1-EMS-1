@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*! \mainpage Main Page
+ * 
+ * \section intro_sec Introduction
+ * 
+ * Technical Specification for the ContractEmployee Class<br>
+ * PROJECT  :   SQ1 - EMS1<br>
+ * 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

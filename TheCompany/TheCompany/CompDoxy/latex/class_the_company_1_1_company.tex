@@ -1,0 +1,198 @@
+\hypertarget{class_the_company_1_1_company}{}\section{The\+Company.\+Company Class Reference}
+\label{class_the_company_1_1_company}\index{The\+Company.\+Company@{The\+Company.\+Company}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_the_company_1_1_company_a410c02d40ad8dadb6073610086afe1db}{Company} ()
+\item 
+void \hyperlink{class_the_company_1_1_company_a69665e774c6dca3b6366d65a7219d7ef}{Add} (Employee new\+Employee, bool valid)
+\item 
+void \hyperlink{class_the_company_1_1_company_a7344db964f237ce99c534f6f60c22558}{Remove} (string S\+I\+N)
+\item 
+string \hyperlink{class_the_company_1_1_company_a5cb23185b13b193a5181f71e4177aff5}{Get\+Details\+To\+Save} ()
+\item 
+string \hyperlink{class_the_company_1_1_company_a5c8a24a34da6eebcabc743ecab67f81d}{Traverse} ()
+\item 
+string \hyperlink{class_the_company_1_1_company_a03fa6056367b58fb1fad29417a8a206a}{Traverse} (string S\+I\+N)
+\item 
+void \hyperlink{class_the_company_1_1_company_a69d694b686152bad2d1220f837578a4f}{Traverse} (string S\+I\+N, ref Employee temp\+Emp)
+\item 
+void \hyperlink{class_the_company_1_1_company_a90db193981072dbc3a7039739cc84671}{Modify} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_the_company_1_1_company_ac8e2b17c2cb8d2827316bdd94315656d}{first\+Name}
+\item 
+string \hyperlink{class_the_company_1_1_company_a8b7079edba0fc7a04a7b3b3c96146f41}{last\+Name}
+\item 
+string \hyperlink{class_the_company_1_1_company_af1f444cbde9ffb5cce862ded889095a9}{date\+Of\+Birth}
+\item 
+string \hyperlink{class_the_company_1_1_company_a3d40e1c556b2289dc7e902712fc83d9f}{social\+Insurance\+Number}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_the_company_1_1_company_a50cde08512d6256ccd81a718fc6792d1}{$\sim$\+Company} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Employee $>$ \hyperlink{class_the_company_1_1_company_a86ea0aad0b1c1aeb0dcb952149b10c4f}{the\+Company} = new List$<$Employee$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+N\+A\+M\+E \+: \hyperlink{class_the_company_1_1_company}{Company}~\newline
+ P\+U\+R\+P\+O\+S\+E \+: The \hyperlink{class_the_company_1_1_company}{Company} class is the container for the program and holds the list of Employees. It contains methods for Adding, Removing, and Traversing the list. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_the_company_1_1_company_a410c02d40ad8dadb6073610086afe1db}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Company@{Company}}
+\index{Company@{Company}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Company()}]{\setlength{\rightskip}{0pt plus 5cm}The\+Company.\+Company.\+Company (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a410c02d40ad8dadb6073610086afe1db}
+\hypertarget{class_the_company_1_1_company_a50cde08512d6256ccd81a718fc6792d1}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!````~Company@{$\sim$\+Company}}
+\index{````~Company@{$\sim$\+Company}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{$\sim$\+Company()}]{\setlength{\rightskip}{0pt plus 5cm}The\+Company.\+Company.$\sim$\+Company (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_the_company_1_1_company_a50cde08512d6256ccd81a718fc6792d1}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_the_company_1_1_company_a69665e774c6dca3b6366d65a7219d7ef}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Add@{Add}}
+\index{Add@{Add}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Add(\+Employee new\+Employee, bool valid)}]{\setlength{\rightskip}{0pt plus 5cm}void The\+Company.\+Company.\+Add (
+\begin{DoxyParamCaption}
+\item[{Employee}]{new\+Employee, }
+\item[{bool}]{valid}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a69665e774c6dca3b6366d65a7219d7ef}
+F\+U\+N\+C\+T\+I\+O\+N \+: public void \hyperlink{class_the_company_1_1_company_a69665e774c6dca3b6366d65a7219d7ef}{Add(\+Employee new\+Employee, bool valid)}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: This method is used to add new\+Employee to the list only if valid is true.
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+: 
+\begin{DoxyParams}{Parameters}
+{\em Employee} & new\+Employee \+: the employee to add. \\
+\hline
+{\em bool} & valid \+: whether or not new\+Employee is valid\\
+\hline
+\end{DoxyParams}
+R\+E\+T\+U\+R\+N \+: None \hypertarget{class_the_company_1_1_company_a5cb23185b13b193a5181f71e4177aff5}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Get\+Details\+To\+Save@{Get\+Details\+To\+Save}}
+\index{Get\+Details\+To\+Save@{Get\+Details\+To\+Save}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Get\+Details\+To\+Save()}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+Get\+Details\+To\+Save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a5cb23185b13b193a5181f71e4177aff5}
+F\+U\+N\+C\+T\+I\+O\+N \+: public string \hyperlink{class_the_company_1_1_company_a5cb23185b13b193a5181f71e4177aff5}{Get\+Details\+To\+Save()}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: This method gets the details of each employee and puts them into a string that is in the correct format.
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+: None
+
+R\+E\+T\+U\+R\+N \+: string \+: the string of details to be saved \hypertarget{class_the_company_1_1_company_a90db193981072dbc3a7039739cc84671}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Modify@{Modify}}
+\index{Modify@{Modify}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Modify()}]{\setlength{\rightskip}{0pt plus 5cm}void The\+Company.\+Company.\+Modify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a90db193981072dbc3a7039739cc84671}
+F\+U\+N\+C\+T\+I\+O\+N \+: public void \hyperlink{class_the_company_1_1_company_a90db193981072dbc3a7039739cc84671}{Modify()}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: Do to a design decision made by the Project Manager Brandon Diebold, the logic for this method was added to Presentation.\+U\+I\+Menu.\+employee\+Details\+Menu(string employee\+S\+I\+N).
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+: None
+
+R\+E\+T\+U\+R\+N \+: None \hypertarget{class_the_company_1_1_company_a7344db964f237ce99c534f6f60c22558}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Remove@{Remove}}
+\index{Remove@{Remove}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Remove(string S\+I\+N)}]{\setlength{\rightskip}{0pt plus 5cm}void The\+Company.\+Company.\+Remove (
+\begin{DoxyParamCaption}
+\item[{string}]{S\+I\+N}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a7344db964f237ce99c534f6f60c22558}
+F\+U\+N\+C\+T\+I\+O\+N \+: public void \hyperlink{class_the_company_1_1_company_a7344db964f237ce99c534f6f60c22558}{Remove(string S\+I\+N)}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: This method is used to remove an Employee from the list. The Employee is found through the S\+I\+N as that is almost garanteed to be unique.
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+: 
+\begin{DoxyParams}{Parameters}
+{\em string} & S\+I\+N \+: the social insurance number of the Employee to remove\\
+\hline
+\end{DoxyParams}
+R\+E\+T\+U\+R\+N \+: None \hypertarget{class_the_company_1_1_company_a5c8a24a34da6eebcabc743ecab67f81d}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Traverse@{Traverse}}
+\index{Traverse@{Traverse}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Traverse()}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+Traverse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a5c8a24a34da6eebcabc743ecab67f81d}
+F\+U\+N\+C\+T\+I\+O\+N \+: public string \hyperlink{class_the_company_1_1_company_a5c8a24a34da6eebcabc743ecab67f81d}{Traverse()}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: This method gets the
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+:
+
+R\+E\+T\+U\+R\+N \+: string \+: the formated string of employees details \hypertarget{class_the_company_1_1_company_a03fa6056367b58fb1fad29417a8a206a}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Traverse@{Traverse}}
+\index{Traverse@{Traverse}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Traverse(string S\+I\+N)}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+Traverse (
+\begin{DoxyParamCaption}
+\item[{string}]{S\+I\+N}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a03fa6056367b58fb1fad29417a8a206a}
+F\+U\+N\+C\+T\+I\+O\+N \+: public string \hyperlink{class_the_company_1_1_company_a03fa6056367b58fb1fad29417a8a206a}{Traverse(string S\+I\+N)}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: This method gets the details of the Employee with a matching S\+I\+N.
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+: 
+\begin{DoxyParams}{Parameters}
+{\em string} & S\+I\+N \+: the social insurance number of the Employee to find\\
+\hline
+\end{DoxyParams}
+R\+E\+T\+U\+R\+N \+: string \+: the formated string of employees details \hypertarget{class_the_company_1_1_company_a69d694b686152bad2d1220f837578a4f}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!Traverse@{Traverse}}
+\index{Traverse@{Traverse}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{Traverse(string S\+I\+N, ref Employee temp\+Emp)}]{\setlength{\rightskip}{0pt plus 5cm}void The\+Company.\+Company.\+Traverse (
+\begin{DoxyParamCaption}
+\item[{string}]{S\+I\+N, }
+\item[{ref Employee}]{temp\+Emp}
+\end{DoxyParamCaption}
+)}\label{class_the_company_1_1_company_a69d694b686152bad2d1220f837578a4f}
+F\+U\+N\+C\+T\+I\+O\+N \+: public void \hyperlink{class_the_company_1_1_company_a69d694b686152bad2d1220f837578a4f}{Traverse(string S\+I\+N, ref Employee temp\+Emp)}
+
+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N \+: This method gets the details of the Employee with a matching S\+I\+N and puts it in temp\+Emp.
+
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S \+: 
+\begin{DoxyParams}{Parameters}
+{\em string} & S\+I\+N \+: the social insurance number of the Employee to find \+: \\
+\hline
+{\em ref} & Employee temp\+Emp \+: the Employee details\\
+\hline
+\end{DoxyParams}
+R\+E\+T\+U\+R\+N \+: None 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_the_company_1_1_company_af1f444cbde9ffb5cce862ded889095a9}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!date\+Of\+Birth@{date\+Of\+Birth}}
+\index{date\+Of\+Birth@{date\+Of\+Birth}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{date\+Of\+Birth}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+date\+Of\+Birth}\label{class_the_company_1_1_company_af1f444cbde9ffb5cce862ded889095a9}
+\hypertarget{class_the_company_1_1_company_ac8e2b17c2cb8d2827316bdd94315656d}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!first\+Name@{first\+Name}}
+\index{first\+Name@{first\+Name}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{first\+Name}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+first\+Name}\label{class_the_company_1_1_company_ac8e2b17c2cb8d2827316bdd94315656d}
+\hypertarget{class_the_company_1_1_company_a8b7079edba0fc7a04a7b3b3c96146f41}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!last\+Name@{last\+Name}}
+\index{last\+Name@{last\+Name}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{last\+Name}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+last\+Name}\label{class_the_company_1_1_company_a8b7079edba0fc7a04a7b3b3c96146f41}
+\hypertarget{class_the_company_1_1_company_a3d40e1c556b2289dc7e902712fc83d9f}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!social\+Insurance\+Number@{social\+Insurance\+Number}}
+\index{social\+Insurance\+Number@{social\+Insurance\+Number}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{social\+Insurance\+Number}]{\setlength{\rightskip}{0pt plus 5cm}string The\+Company.\+Company.\+social\+Insurance\+Number}\label{class_the_company_1_1_company_a3d40e1c556b2289dc7e902712fc83d9f}
+\hypertarget{class_the_company_1_1_company_a86ea0aad0b1c1aeb0dcb952149b10c4f}{}\index{The\+Company\+::\+Company@{The\+Company\+::\+Company}!the\+Company@{the\+Company}}
+\index{the\+Company@{the\+Company}!The\+Company\+::\+Company@{The\+Company\+::\+Company}}
+\subsubsection[{the\+Company}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Employee$>$ The\+Company.\+Company.\+the\+Company = new List$<$Employee$>$()\hspace{0.3cm}{\ttfamily [private]}}\label{class_the_company_1_1_company_a86ea0aad0b1c1aeb0dcb952149b10c4f}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+The\+Company/\+The\+Company/\+The\+Company/\hyperlink{_the_company_8cs}{The\+Company.\+cs}\end{DoxyCompactItemize}

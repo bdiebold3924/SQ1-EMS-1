@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*! \mainpage Main Page
+ * 
+ * \section intro_sec Introduction
+ * 
+ * Technical Specification for the Database Class<br>
+ * PROJECT  :   SQ1 - EMS1<br>
+ * 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,128 +26,124 @@ namespace Supporting
 */
         public static List<string> LoadDatabase(string fileName)
         {
-            string temp = "";
-            int index = 0;
             List<string> data = new List<string>();
-            string database = "";
-            string dir = "DBase//" + fileName;
             try
             {
-                database = System.IO.File.ReadAllText(dir);
+                string temp = "";
+                int index = 0;
+                string database = "";
+                string dir = "DBase//" + fileName;
+                try
+                {
+                    database = System.IO.File.ReadAllText(dir);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log("Database", "LoadDatabase", ex.Message);
+                    data.Add("ERROR");
+                    return data;
+                }
+                for (int i = 0; index < (database.Length - 2); i++)
+                {
+                    string employeeInfo = "";
+                    string type = "";
+                    while (database[index] != '|')
+                    {
+                        type += database[index];
+                        //removes the unneeded characters
+                        if (type.Contains('\r') || type.Contains('\n'))
+                        {
+                            type = "";
+                        }
+                        index++;
+                    }
+                    employeeInfo += type;
+                    employeeInfo += "|";
+                    index++;
+                    //get basic employee information
+                    for (int x = 0; x < 4; x++)
+                    {
+                        while (database[index] != '|')
+                        {
+                            temp += database[index];
+                            index++;
+                        }
+                        temp += "|";
+                        employeeInfo += temp;
+                        temp = "";
+                        index++;
+
+                    }
+                    if (type == "FT")
+                    {
+                        for (int x = 0; x < 3; x++)
+                        {
+                            while (database[index] != '|')
+                            {
+                                temp += database[index];
+                                index++;
+                            }
+                            temp += "|";
+                            employeeInfo += temp;
+                            temp = "";
+                            index++;
+                        }
+                    }
+                    if (type == "PT")
+                    {
+                        for (int x = 0; x < 3; x++)
+                        {
+                            while (database[index] != '|')
+                            {
+                                temp += database[index];
+                                index++;
+                            }
+                            temp += "|";
+                            employeeInfo += temp;
+                            temp = "";
+                            index++;
+                        }
+                    }
+                    if (type == "CT")
+                    {
+                        for (int x = 0; x < 3; x++)
+                        {
+                            while (database[index] != '|')
+                            {
+                                temp += database[index];
+                                index++;
+                            }
+                            temp += "|";
+                            employeeInfo += temp;
+                            temp = "";
+                            index++;
+                        }
+                    }
+                    if (type == "SN")
+                    {
+                        for (int x = 0; x < 2; x++)
+                        {
+                            while (database[index] != '|')
+                            {
+                                temp += database[index];
+                                index++;
+                            }
+                            temp += "|";
+                            employeeInfo += temp;
+                            temp = "";
+                            index++;
+                        }
+                    }
+                    data.Add(employeeInfo);
+                    employeeInfo = "";
+                    string message = "Total number of records read: " + data.Count().ToString();
+                    Logger.Log("Database", "LoadDatabase", message);
+                }
             }
             catch(Exception ex)
             {
-                Logger.Log("Database","LoadDatabase",ex.Message);
+                Logger.Log("Database", "LoadDatabase", ex.Message);
                 data.Add("ERROR");
-                return data; 
-            }
-            for (int i = 0; index < database.Length; i++)
-            {
-                /*        For example, here is a typical FulltimeEmployee type of record:
-;                       FT|Clarke|Sean|333333333|1950-05-05|1960-05-05|N/A|15000.00|
-;
-;                Here is a typical ParttimeEmployee type of record:
-;                       PT|Clarke|Sean|333333333|1950-05-05|1955-05-05|1959-05-05|1.23|
-;
-;                Here is a typical ContractEmployee type of record:
-;                       CT|Sean Inc.||170123888|1970-01-01|1980-01-01|1985-12-31|1000000.00|
-;
-;                Here is a typical SeasonalEmployee type of record:
-;                       SN|Clarke|Sean|333333333|1950-05-05|WINTER|0.15|*/
-                string employeeInfo = "";
-                string type = "";
-                while (database[index] != '|')
-                {
-                    type += database[index];
-                    //removes the unneeded characters
-                    if (type.Contains('\r') || type.Contains('\n'))
-                    {
-                        type = "";
-                    }
-                    index++;
-                }
-                employeeInfo += type;
-                employeeInfo += "|";
-                index++;
-                //get basic employee information
-                for (int x = 0; x < 4; x++)
-                {
-                    while (database[index] != '|')
-                    {
-                        temp += database[index];
-                        index++;
-                    }
-                    temp += "|";
-                    employeeInfo += temp;
-                    temp = "";
-                    index++;
-
-                }
-                //index++;
-                if(type == "FT")
-                {
-                    for (int x = 0; x < 3; x++)
-                    {
-                        while (database[index] != '|')
-                        {
-                            temp += database[index];
-                            index++;
-                        }
-                        temp += "|";
-                        employeeInfo += temp;
-                        temp = "";
-                        index++;
-                    }
-                }
-                if(type == "PT")
-                {
-                    for (int x = 0; x < 3; x++)
-                    {
-                        while (database[index] != '|')
-                        {
-                            temp += database[index];
-                            index++;
-                        }
-                        temp += "|";
-                        employeeInfo += temp;
-                        temp = "";
-                        index++;
-                    }
-                }
-                if(type == "CT")
-                {
-                    for (int x = 0; x < 3; x++)
-                    {
-                        while (database[index] != '|')
-                        {
-                            temp += database[index];
-                            index++;
-                        }
-                        temp += "|";
-                        employeeInfo += temp;
-                        temp = "";
-                        index++;
-                    }
-                }
-                if(type == "SN")
-                {
-                    for (int x = 0; x < 2; x++)
-                    {
-                        while (database[index] != '|')
-                        {
-                            temp += database[index];
-                            index++;
-                        }
-                        temp += "|";
-                        employeeInfo += temp;
-                        temp = "";
-                        index++;
-                    }
-                }
-                data.Add(employeeInfo);
-                employeeInfo = "";
-                string message = "Total number of records read: " + data.Count().ToString();
-                Logger.Log("Database", "LoadDatabase", message);
             }
             return data;
         }
@@ -153,11 +157,10 @@ namespace Supporting
 */
         public static Boolean SaveDatabase(List<string> database, string fileName)
         {
-            
             try
             {
                 StreamWriter file = new StreamWriter("DBase//" + fileName);
-                for(int i = 0; i < database.Count-1; i++)
+                for(int i = 0; i < database.Count; i++)
                 {
                     file.WriteLine(database[i]);
                 }

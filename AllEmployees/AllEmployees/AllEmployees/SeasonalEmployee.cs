@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*! \mainpage Main Page
+ * 
+ * \section intro_sec Introduction
+ * 
+ * Technical Specification for the SeasonalEmployee Class<br>
+ * PROJECT  :   SQ1 - EMS1<br>
+ * 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +59,7 @@ namespace AllEmployees
         public SeasonalEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN,
             string newSeason, double newPiecePay) : base(newFirstName, newLastName, newDateOfBirth, newSIN)
         {
+            newSeason = newSeason.ToLower();
             if (String.Compare("winter", newSeason) == 0)
             {
                 season = String.Copy(newSeason);
