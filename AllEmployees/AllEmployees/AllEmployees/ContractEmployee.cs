@@ -156,10 +156,20 @@ namespace AllEmployees
             DateTime result;    //used as an output value when checking to see if the date is valid
 
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
-
+            
+            if(temp.Equals("N/A")){
+                 Logger.Log("ContractEmployee", "SetContractStartDate", "Contract start date is valid and set.");
+                 contractStartDate = String.Copy(temp);
+                 return (true);
+            }
+            if(temp.Equals("")){
+                 Logger.Log("ContractEmployee", "SetContractStartDate", "Contract start date is valid and set.");
+                 contractStartDate = String.Copy(temp);
+                 return (true);
+            }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
-                 Logger.Log("ContractEmployee", "SetContractStartDate", "Date entered is not a real date");
+                Logger.Log("ContractEmployee", "SetContractStartDate", "Date entered is not a real date");
                 return (false);
             }
             //since the date was verified...
@@ -184,6 +194,12 @@ namespace AllEmployees
             DateTime result;    //output value needed for the date validity check
 
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
+            
+            if(temp.Equals("N/A")){
+                 Logger.Log("ContractEmployee", "SetContractStopDate", "Contract stop date is valid and set.");
+                 contractStopDate = String.Copy(temp);
+                 return (true);
+            }
             if (String.Compare("", temp) == 0)  //check to see if the date is an blank string
             {
                 //allowed to be blank... update the value
@@ -331,42 +347,54 @@ namespace AllEmployees
 
             dateOfBirth = Regex.Replace(dateOfBirth, @"-+", ""); //removes all whitespace from the inputted date
 
-            if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
-            {
-                Logger.Log("ContractEmployee", "Validate", "date of birth is invalid");   //log the change 
-                return (false);
+           
+            if(dateOfBirth != "N/A"){
+                if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+                {
+                    Logger.Log("ContractEmployee", "Validate", "date of birth is invalid");   //log the change 
+                    return (false);
+                }
             }
-
-
-            dateOfBirth = dateOfBirth.Insert(4, "-");
-            dateOfBirth = dateOfBirth.Insert(7, "-");  //reformat the string for output purposes    
+        
+            if(dateOfBirth.Length > 3)
+            {
+                dateOfBirth = dateOfBirth.Insert(4, "-");
+                dateOfBirth = dateOfBirth.Insert(7, "-");  //reformat the string for output purposes 
+            }
             //now validate contract start date
             //follows same date checking algorithm as setContractStartDate
             contractStartDate = Regex.Replace(contractStartDate, @"-+", ""); //removes all whitespace from the inputted date
 
-            if (!DateTime.TryParseExact(contractStartDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
-            {
-                Logger.Log("ContractEmployee", "Validate", "Contract start date is invalid");   //log the change 
-                return (false);
+            if(contractStartDate != "N/A"){
+                if (!DateTime.TryParseExact(contractStartDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+                {
+                    Logger.Log("ContractEmployee", "Validate", "Contract start date is invalid");   //log the change 
+                    return (false);
+                }
             }
 
-
-            contractStartDate = contractStartDate.Insert(4, "-");
-            contractStartDate = contractStartDate.Insert(7, "-");
+            if(contractStartDate.Length > 3)
+            {
+                contractStartDate = contractStartDate.Insert(4, "-");
+                contractStartDate = contractStartDate.Insert(7, "-");
+            }
+            
 
             //now validate date of termination
             int blankFlag = 0;
             contractStopDate = Regex.Replace(contractStopDate, @"-+", ""); //removes all whitespace from the inputted date
-
-            if (!DateTime.TryParseExact(contractStopDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
-            {
-                 Logger.Log("ContractEmployee", "Validate", "Contract Stop date is invalid");   //log the change 
-                return (false);
+    
+            if(contractStopDate != "N/A"){
+                if (!DateTime.TryParseExact(contractStopDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
+                {
+                    Logger.Log("ContractEmployee", "Validate", "Contract Stop date is invalid");   //log the change 
+                    return (false);
+                }
             }
-
-            contractStopDate = contractStopDate.Insert(4, "-");
-            contractStopDate = contractStopDate.Insert(7, "-");
-
+            if(contractStopDate.Length > 3){
+                contractStopDate = contractStopDate.Insert(4, "-");
+                contractStopDate = contractStopDate.Insert(7, "-");
+            }
             //validate salary
             if (fixedContractAmount <= 0)   //cannot be less than or equal to zero
             {
