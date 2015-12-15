@@ -17,9 +17,9 @@ namespace AllEmployees
     public class ContractEmployee : Employee
     {
         /**Attributes**/
-        string contractStartDate;       
-        string contractStopDate;
-        double fixedContractAmount;
+        public string contractStartDate;
+        public string contractStopDate;
+        public double fixedContractAmount;
 
         //SIN for this class holds a Business number... 
         //first name for this class is nothing, last name is the corporations name

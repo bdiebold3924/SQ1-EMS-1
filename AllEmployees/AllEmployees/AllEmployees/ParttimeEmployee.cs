@@ -17,9 +17,9 @@ namespace AllEmployees
     */
     public class ParttimeEmployee : Employee
     {
-        string dateOfHire;
-        string dateOfTermination;
-        double hourlyRate;
+        public string dateOfHire;
+        public string dateOfTermination;
+        public double hourlyRate;
 
         /**
         Name: ParttimeEmployee()
@@ -397,7 +397,7 @@ namespace AllEmployees
                 return (false);
             }
             else if(dateOfTermination == "N/A"){
-                blankflag = 2; 
+                blankFlag = 2; 
             }
             
             if(dateOfTermination.Length > 5){

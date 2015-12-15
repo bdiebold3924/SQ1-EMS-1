@@ -16,8 +16,8 @@ namespace AllEmployees
             */
     public class SeasonalEmployee : Employee
     {
-        string season; //includes Winter Spring Summer Fall
-        double piecePay;
+        public string season; //includes Winter Spring Summer Fall
+        public double piecePay;
         
         /**
         Name: SeasonalEmployee
@@ -316,27 +316,8 @@ namespace AllEmployees
 
             //now check for valid season value..
 
-            if (String.Compare("winter", season) != 0)
-            {
-                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
-                return (false);
-            }
-            else if (String.Compare("spring", season) != 0)
-            {
-                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
-                return (false);
-            }
-            else if (String.Compare("summer", season) != 0)
-            {
-                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
-                return (false);
-            }
-            else if (String.Compare("fall", season) != 0)
-            {
-                Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
-                return (false);
-            }
-            else if (String.Compare("", season) != 0)
+            season = season.ToLower();
+            if ((String.Compare("winter", season) != 0) && (String.Compare("spring", season) != 0) && (String.Compare("summer", season) != 0) &&  (String.Compare("fall", season) != 0) && (String.Compare("", season) != 0))
             {
                 Logger.Log("SeasonalEmployee", "Validate", "Season is invalid, not a real season");
                 return (false);

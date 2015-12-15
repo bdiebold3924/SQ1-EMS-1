@@ -16,9 +16,9 @@ namespace AllEmployees
     public class FulltimeEmployee : Employee
     {
 
-        string dateOfHire;
-        string dateOfTermination;
-        double salary;
+        public string dateOfHire;
+        public string dateOfTermination;
+        public double salary;
         
         /** Name: FulltimeEmployee()
         Params: None
@@ -350,7 +350,7 @@ namespace AllEmployees
                 return (false);
             }
             else if(dateOfTermination == "N/A"){
-                blankflag = 1;
+                blankFlag = 1;
             }
             
             if(dateOfTermination.Length > 5){

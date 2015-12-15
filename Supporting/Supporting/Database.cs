@@ -151,12 +151,12 @@ namespace Supporting
 * \param List<string> database : all the employee information
 *
 */
-        public static Boolean SaveDatabase(List<string> database)
+        public static Boolean SaveDatabase(List<string> database, string fileName)
         {
             
             try
             {
-                StreamWriter file = new StreamWriter("database.txt");
+                StreamWriter file = new StreamWriter("DBase//" + fileName);
                 for(int i = 0; i < database.Count-1; i++)
                 {
                     file.WriteLine(database[i]);
@@ -203,7 +203,7 @@ namespace Supporting
 */
         public static List<string> ReloadDatabase(List<string> database)
         {
-            SaveDatabase(database);
+            SaveDatabase(database, "database.txt");
             return LoadDatabase("database.txt");
         }
 

@@ -54,7 +54,7 @@ namespace Test
         {
             data.Add("Test1");
             data.Add("Test2");
-            bool success = Database.SaveDatabase(data);
+            bool success = Database.SaveDatabase(data, "database.txt");
             Assert.AreEqual(success, true);
         }
 
