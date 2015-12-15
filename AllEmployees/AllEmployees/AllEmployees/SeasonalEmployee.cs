@@ -348,9 +348,34 @@ namespace AllEmployees
                 Logger.Log("SeasonalEmployee", "Validate", "Piece Pay is invalid, must be a number greater than zero.");
                 return (false);
             }
+            
+            //validate the birth date... 
+            
+             //follows the same date checking algorithm as mutators
+            DateTime result;
+
+            dateOfBirth = Regex.Replace(dateOfBirth, @"-+", ""); //removes all whitespace from the inputted date
+
+           
+            if(dateOfBirth != "N/A"){
+                if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+                {
+                    Logger.Log("ContractEmployee", "Validate", "date of birth is invalid");   //log the change 
+                    return (false);
+                }
+            }
+        
+            if(dateOfBirth.Length > 5)
+            {
+                dateOfBirth = dateOfBirth.Insert(4, "-");
+                dateOfBirth = dateOfBirth.Insert(7, "-");  //reformat the string for output purposes 
+            }
             // all attributes validated..
             Logger.Log("SeasonalEmployee", "Validate", "All attributes of the SeasonalEmployee are valid.");
             return (true);
+            
+            
+            
         }
 
         /**
