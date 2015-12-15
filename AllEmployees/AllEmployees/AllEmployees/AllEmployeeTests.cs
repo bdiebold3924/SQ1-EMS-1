@@ -15,6 +15,7 @@ namespace AllEmployeesTest
 * -Follows the happy path through the code for normal functionality.<br>
 -If the test fails first name will not be set and method would return false"<br>
 * -Expected outcome: SetFirstName method should return true
+Result: Method returned true, firstName was set.
 */
         [TestMethod]
         public void testSetFirstName1()
@@ -32,6 +33,7 @@ namespace AllEmployeesTest
 * -Checks to see that the method does not allow numbers or invalid names <br>
 -If the test fails first name will be set and method would return true"<br>
 * -Expected outcome: SetFirstName method should return false
+* Result: Method returned false, firstName was not set.
 */
         [TestMethod]
         public void testSetFirstName2()
@@ -48,6 +50,7 @@ namespace AllEmployeesTest
 * -Checks to see that the method allows for special character such as an apostrophe in a name.<br>
 -If the test fails first name will not be set and method would return false"<br>
 * -Expected outcome: SetFirstName method should return true
+Result: Method returned true, firstName was set.
 */
         [TestMethod]
         public void testSetFirstName3()
@@ -66,6 +69,7 @@ namespace AllEmployeesTest
 * -Follows the happy path through the code for normal functionality.<br>
 -If the test fails last name will not be set and method would return false"<br>
 * -Expected outcome: SetLastName method should return true
+Result: Method returned true, lastName was set.
 */
         [TestMethod]
         public void testSetLastName1()
@@ -83,6 +87,7 @@ namespace AllEmployeesTest
 * -Checks to see that illegal characters are not allowed in the name<br>
 -If the test fails last name will be set and method would return true"<br>
 * -Expected outcome: SetLastName method should return false
+Result: Method returned false, lastName was not set.
 */
         [TestMethod]
         public void testSetLastName2()
@@ -99,6 +104,7 @@ namespace AllEmployeesTest
 * -Checks to see that special characters are allowed in the last name<br>
 -If the test fails last name will not be set and method would return false"<br>
 * -Expected outcome: SetLastName method should return true
+Result: Method returned true, lastName was set.
 */
         [TestMethod]
         public void testSetLastName3()
@@ -115,6 +121,7 @@ namespace AllEmployeesTest
 * -Follows the happy path through the code for normal functionality.<br>
 -If the test fails date of birth will not be set and method would return false"<br>
 * -Expected outcome: DateOfBirth method should return true
+Result: Method returned true, dateOfBirth was set.
 */
         [TestMethod]
         public void testSetDateOfBirth1()
@@ -132,6 +139,7 @@ namespace AllEmployeesTest
 * -Checks that none real dates cannot be used as valid input.<br>
 -If the test fails date of birth will be set and method would return true"<br>
 * -Expected outcome: DateOfBirth method should return false
+Result: Method returned false, dateOfBirth was not set.
 */
         [TestMethod]
         public void testSetDateOfBirth2()
@@ -149,6 +157,7 @@ namespace AllEmployeesTest
 * -Checks that leap years are indeed taken as valid input.<br>
 -If the test fails date of birth will not be set and method would return false"<br>
 * -Expected outcome: DateOfBirth method should return true
+Result: Method returned true, dateOfBirth was set.
 */
         [TestMethod]
         public void testSetDateOfBirth3()
@@ -166,6 +175,7 @@ namespace AllEmployeesTest
 * -Checks that invalid characters cannot be used for dates <br>
 -If the test fails date of birth will be set and method would return true"<br>
 * -Expected outcome: DateOfBirth method should return false
+Result: Method returned false, dateOfBirth was not set.
 */
         [TestMethod]
         public void testSetDateOfBirth4()
@@ -183,6 +193,7 @@ namespace AllEmployeesTest
 * -Happy Path check to see if accepts a valid SIN number <br>
 -If the test fails date of SIN will not be set and method would return false"<br>
 * -Expected outcome: SetSIN method should return true
+Result: Method returned true, socialInsuranceNumber was set
 */
         [TestMethod]
         public void testSetSIN1()
@@ -201,6 +212,7 @@ namespace AllEmployeesTest
 * -Check to see does not accept invalid SIN number <br>
 -If the test fails date of SIN will be set and method would return true"<br>
 * -Expected outcome: SetSIN method should return false
+Result: Method returned false, socialInsuranceNumber was not set
 */
         [TestMethod]
         public void testSetSIN2()
@@ -219,6 +231,7 @@ namespace AllEmployeesTest
 * -bounds check to see that only a 9 digit number is accepted <br>
 -If the test fails date of SIN will be set and method would return true"<br>
 * -Expected outcome: SetSIN method should return false
+Result: Method returned false, socialInsuranceNumber was not set
 */
         [TestMethod]
         public void testSetSIN3()
@@ -236,6 +249,7 @@ namespace AllEmployeesTest
 * -bounds check to see that only a 9 digit number is accepted <br>
 -If the test fails date of SIN will be set and method would return true"<br>
 * -Expected outcome: SetSIN method should return false
+Result: Method returned false, socialInsuranceNumber was not set
 */
         [TestMethod]
         public void testSetSIN4()
@@ -253,6 +267,7 @@ namespace AllEmployeesTest
 * -check to see that non number characters are not accepted <br>
 -If the test fails date of SIN will be set and method would return true"<br>
 * -Expected outcome: SetSIN method should return false
+Result: Method returned false, socialInsuranceNumber was not set
 */
         [TestMethod]
         public void testSetSIN5()
@@ -272,6 +287,7 @@ namespace AllEmployeesTest
 * -happy path to see that it takes the appropriate value and sets it<br>
 -If the test fails date of contract amount will not be set and method would return false"<br>
 * -Expected outcome: SetFixedContractAmount method should return true
+Result: Method returned true, fixedContractAmount was set.
 */
         [TestMethod]
         public void testSetFixedContractAmount1()
@@ -289,6 +305,7 @@ namespace AllEmployeesTest
 * - Bounds Check to see if accepts invalid lower than zero contract amount <br>
 -If the test fails date of contract amount will be set and method would return true"<br>
 * -Expected outcome: SetFixedContractAmount method should return false
+Result: Method returned false, fixedContractAmount was not set.
 */
         [TestMethod]
         public void testSetFixedContractAmount2()
@@ -306,6 +323,7 @@ namespace AllEmployeesTest
 * - Bounds Check to see if accepts 0 <br>
 -If the test fails date of contract amount will not be set and method would return false"<br>
 * -Expected outcome: SetFixedContractAmount method should return true
+Result: Method returned true, fixedContractAmount was set.
 */
         [TestMethod]
         public void testSetFixedContractAmount3()
@@ -323,6 +341,7 @@ namespace AllEmployeesTest
 * - Exception check to see that letters are not accepted as input <br>
 -If the test fails date of contract amount will be set and method would return true"<br>
 * -Expected outcome: SetFixedContractAmount method should return false
+Result: Method returned false, fixedContractAmount was not set.
 */
         [TestMethod]
         public void testSetFixedContractAmount4()
@@ -341,6 +360,7 @@ namespace AllEmployeesTest
 * -happy path to see valid years are indeed taken as valid input.<br>
 -If the test fails contract start date will not be set and method would return false"<br>
 * -Expected outcome: SetContractStartDate method should return true
+Result: Method returned true, contractStartDate was set.
 */
         [TestMethod]
         public void testSetContractStartDate1()
@@ -359,6 +379,7 @@ namespace AllEmployeesTest
 * -check to see if leap years are taken as valid.<br>
 -If the test fails contract start date will not be set and method would return false"<br>
 * -Expected outcome: SetContractStartDate method should return true
+Result: Method returned true, contractStartDate was set.
 */
         [TestMethod]
         public void testSetContractStartDate2()
@@ -376,6 +397,7 @@ namespace AllEmployeesTest
 * -Check to see that invalid characters aren't accepted<br>
 -If the test fails contract start date will be set and method would return true"<br>
 * -Expected outcome: SetContractStartDate method should return false
+Result: Method returned false, contractStartDate was not set.
 */
         [TestMethod]
         public void testSetContractStartDate3()
@@ -394,6 +416,7 @@ namespace AllEmployeesTest
 * -happy path to see valid years are indeed taken as valid input.<br>
 -If the test fails contract stop date will not be set and method would return false"<br>
 * -Expected outcome: SetContractStopDate method should return true
+Result: Method returned true, contractStopDate was set.
 */
         [TestMethod]
         public void testSetContractStopDate1()
@@ -412,6 +435,7 @@ namespace AllEmployeesTest
 * -check to see if leap years are taken as valid.<br>
 -If the test fails contract stop date will not be set and method would return false"<br>
 * -Expected outcome: SetContractStopDate method should return true
+Result: Method returned true, contractStopDate was set.
 */
         [TestMethod]
         public void testSetContractStopDate2()
@@ -429,6 +453,7 @@ namespace AllEmployeesTest
 * -Check to see that invalid characters aren't accepted<br>
 -If the test fails contract stop date will be set and method would return true"<br>
 * -Expected outcome: SetContractStopDate method should return false
+Result: Method returned false, contractStopDate was not set.
 */
         [TestMethod]
         public void testSetContractStopDate3()
@@ -450,6 +475,7 @@ namespace AllEmployeesTest
 * -Happy path to see that salary inputted is valid<br>
 -If the test fails salary will be set and method would return false"<br>
 * -Expected outcome: SetSalary method should return true
+Result: Method returned true, salary was set.
 */
         [TestMethod]
         public void testSetSalary1()
@@ -467,6 +493,7 @@ namespace AllEmployeesTest
 * -Check that lower than 0 values are not accepted<br>
 -If the test fails salary will be set and method would return true"<br>
 * -Expected outcome: SetSalary method should return false
+Result: Method returned false, salary was not set.
 */
         [TestMethod]
         public void testSetSalary2()
@@ -484,6 +511,7 @@ namespace AllEmployeesTest
 * -Check to see that 0 is consideered valid<br>
 -If the test fails salary will be not set and method would return false"<br>
 * -Expected outcome: SetSalary method should return true
+Result: Method returned true, salary was set.
 */
         [TestMethod]
         public void testSetSalary3()
@@ -501,6 +529,7 @@ namespace AllEmployeesTest
 * -Check that non valid characters are not allowed by the method<br>
 -If the test fails salary will be set and method would return true"<br>
 * -Expected outcome: SetSalary method should return false
+Result: Method returned false, salary was not set.
 */
         [TestMethod]
         public void testSetSalary4()
@@ -518,6 +547,7 @@ namespace AllEmployeesTest
 * -happy path to see valid years are indeed taken as valid input.<br>
 -If the test fails date of hire will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfHire method should return true
+Result: Method returned true, dateOfHire was set.
 */
         [TestMethod]
         public void testDateOfHire1()
@@ -536,6 +566,7 @@ namespace AllEmployeesTest
 * -check to see if leap years are taken as valid.<br>
 -If the test fails date of hire will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfHire method should return true
+Result: Method returned true, dateOfHire was set.
 */
         [TestMethod]
         public void testSetDateOfHire2()
@@ -553,6 +584,7 @@ namespace AllEmployeesTest
 * -Check to see that invalid characters aren't accepted<br>
 -If the test fails date of hire will be set and method would return true"<br>
 * -Expected outcome: SetDateOfHire method should return false
+Result: Method returned false, dateOfHire was not set.
 */
         [TestMethod]
         public void testSetDateOfHire3()
@@ -572,6 +604,7 @@ namespace AllEmployeesTest
 * -happy path to see valid years are indeed taken as valid input.<br>
 -If the test fails date of termination will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfTermination method should return true
+Result: Method returned true, dateOfTermination was set.
 */
         [TestMethod]
         public void testDateOfTermination1()
@@ -590,6 +623,7 @@ namespace AllEmployeesTest
 * -check to see if leap years are taken as valid.<br>
 -If the test fails date of termination will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfTermination method should return true
+Result: Method returned true, dateOfTermination was set.
 */
         [TestMethod]
         public void testSetDateOfTermination2()
@@ -607,6 +641,7 @@ namespace AllEmployeesTest
 * -Check to see that invalid characters aren't accepted<br>
 -If the test fails date of termination will be set and method would return true"<br>
 * -Expected outcome: SetDateOfTermination method should return false
+Result: Method returned false, dateOfTermination was not set.
 */
         [TestMethod]
         public void testSetDateOfTermination3()
@@ -628,6 +663,7 @@ namespace AllEmployeesTest
 * -happy path to see valid years are indeed taken as valid input.<br>
 -If the test fails date of hire will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfHire method should return true
+Result: Method returned true, dateOfHire was set.
 */
         [TestMethod]
         public void testDateOfHirePT1()
@@ -646,6 +682,7 @@ namespace AllEmployeesTest
 * -check to see if leap years are taken as valid.<br>
 -If the test fails date of hire will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfHire method should return true
+Result: Method returned true, dateOfHire was set.
 */
         [TestMethod]
         public void testSetDateOfHirePT2()
@@ -663,6 +700,7 @@ namespace AllEmployeesTest
 * -Check to see that invalid characters aren't accepted<br>
 -If the test fails date of hire will be set and method would return true"<br>
 * -Expected outcome: SetDateOfHire method should return false
+Result: Method returned false, dateOfHire was not set.
 */
         [TestMethod]
         public void testSetDateOfHirePT3()
@@ -682,6 +720,7 @@ namespace AllEmployeesTest
 * -happy path to see valid years are indeed taken as valid input.<br>
 -If the test fails date of termination will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfTermination method should return true
+Result: Method returned true, dateOfTermination was set.
 */
         [TestMethod]
         public void testDateOfTerminationPT1()
@@ -700,6 +739,7 @@ namespace AllEmployeesTest
 * -check to see if leap years are taken as valid.<br>
 -If the test fails date of termination will not be set and method would return false"<br>
 * -Expected outcome: SetDateOfTermination method should return true
+Result: Method returned true, dateOfTermination was set.
 */
         [TestMethod]
         public void testSetDateOfTerminationPT2()
@@ -717,6 +757,7 @@ namespace AllEmployeesTest
 * -Check to see that invalid characters aren't accepted<br>
 -If the test fails date of termination will be set and method would return true"<br>
 * -Expected outcome: SetDateOfTermination method should return false
+Result: Method returned false, dateOfTermination was not set.
 */
         [TestMethod]
         public void testSetDateOfTerminationPT3()
@@ -734,6 +775,7 @@ namespace AllEmployeesTest
 * -Check to see that valid doubles are allowed <br>
 -If the test fails hourly rate will not be set and method would return false"<br>
 * -Expected outcome: SetHourlyRate method should return true
+Result: Method returned true, hourlyRate was set.
 */
         [TestMethod]
         public void testSetHourlyRate1()
@@ -751,6 +793,7 @@ namespace AllEmployeesTest
 * -Check to see that 0 is allowed <br>
 -If the test fails hourly rate will not be set and method would return false"<br>
 * -Expected outcome: SetHourlyRate method should return true
+Result: Method returned true, hourlyRate was set.
 */
         [TestMethod]
         public void testSetHourlyRate2()
@@ -768,6 +811,7 @@ namespace AllEmployeesTest
 * -Bounds Check to see that negative numbers are not allowed<br>
 -If the test fails hourly rate will be set and method would return true"<br>
 * -Expected outcome: SetHourlyRate method should return false
+Result: Method returned false, hourlyRate was not set.
 */
         [TestMethod]
         public void testSetHourlyRate3()
@@ -785,6 +829,7 @@ namespace AllEmployeesTest
 * -Exception Check to see that invalid chars are not allowed  <br>
 -If the test fails hourly rate will be set and method would return true"<br>
 * -Expected outcome: SetHourlyRate method should return false
+Result: Method returned false, hourlyRate was not set.
 */
         [TestMethod]
         public void testSetHourlyRate()
@@ -804,6 +849,7 @@ namespace AllEmployeesTest
 * -happy path to see that winter season is accepted <br>
 -If the test fails season will not be set and method would return false"<br>
 * -Expected outcome: SetSeason method should return true
+Result: Method returned true, season was set.
 */
         [TestMethod]
         public void testSetSeason1()
@@ -821,6 +867,7 @@ namespace AllEmployeesTest
 * -happy path to see that spring season is accepted <br>
 -If the test fails season will not be set and method would return false"<br>
 * -Expected outcome: SetSeason method should return true
+Result: Method returned true, season was set.
 */
         [TestMethod]
         public void testSetSeason2()
@@ -838,6 +885,7 @@ namespace AllEmployeesTest
 * -happy path to see that summer season is accepted <br>
 -If the test fails season will not be set and method would return false"<br>
 * -Expected outcome: SetSeason method should return true
+Result: Method returned true, season was set.
 */
         [TestMethod]
         public void testSetSeason3()
@@ -855,6 +903,7 @@ namespace AllEmployeesTest
 * -happy path to see that fall season is accepted <br>
 -If the test fails season will not be set and method would return false"<br>
 * -Expected outcome: SetSeason method should return true
+Result: Method returned true, season was set.
 */
         [TestMethod]
         public void testSetSeason4()
@@ -871,6 +920,7 @@ namespace AllEmployeesTest
 * - exception check to see if anything but a season is accepted <br>
 -If the test fails season will be set and method would return true"<br>
 * -Expected outcome: SetSeason method should return false
+Result: Method returned false, season was not set.
 */
         [TestMethod]
         public void testSetSeason5()
@@ -888,6 +938,7 @@ namespace AllEmployeesTest
 * -exception check to see if invalid characters are handled <br>
 -If the test fails season will be set and method would return true"<br>
 * -Expected outcome: SetSeason method should return false
+Result: Method returned false, season was not set.
 */
         [TestMethod]
         public void testSetSeason6()
@@ -905,6 +956,7 @@ namespace AllEmployeesTest
 * -Bounds check to see if a blank entry is accepted<br>
 -If the test fails season will not be set and method would return false"<br>
 * -Expected outcome: SetSeason method should return true
+Result: Method returned true, season was set.
 */
         [TestMethod]
         public void testSetSeason7()
@@ -922,6 +974,7 @@ namespace AllEmployeesTest
 * -happy path to see that a positive double is accepted<br>
 -If the test fails piece pay will not be set and method would return false"<br>
 * -Expected outcome: SetPiecePay method should return true
+Result: Method returned true, piecePay was set.
 */
         [TestMethod]
         public void testSetPiecePay1()
@@ -939,6 +992,7 @@ namespace AllEmployeesTest
 * -bounds check to see that 0 is accepted<br>
 -If the test fails piece pay will not be set and method would return false"<br>
 * -Expected outcome: SetPiecePay method should return true
+Result: Method returned true, piecePay was set.
 */
         [TestMethod]
         public void testSetPiecePay2()
@@ -956,6 +1010,7 @@ namespace AllEmployeesTest
 * -bounds check to see that negative values are not accepted<br>
 -If the test fails piece pay will be set and method would return true"<br>
 * -Expected outcome: SetPiecePay method should return false
+Result: Method returned false, piecePay was not set.
 */
         [TestMethod]
         public void testSetPiecePay3()
@@ -973,6 +1028,7 @@ namespace AllEmployeesTest
 * -exception check to see that invalid character are not accepted<br>
 -If the test fails piece pay will be set and method would return true"<br>
 * -Expected outcome: SetPiecePay method should return false
+Result: Method returned false, piecePay was not set.
 */
         [TestMethod]
         public void testSetPiecePay4()
@@ -988,6 +1044,7 @@ namespace AllEmployeesTest
 * \details <b>Details</b>
 * "<br>
 * -Expected outcome: Validate returns true if all attributes are valid and false if any come up invalid.
+Result: Method returned true when valid employee attributes were all set.
 */
 
         /**
@@ -995,6 +1052,7 @@ namespace AllEmployeesTest
 * \details <b>Details</b>
 * "<br>
 * -Expected outcome: Method successfully retruns a string formatted to output all attribute values for that class
+Result: Method successfully returned a formatted string of all attribute values.
 */
 
 
