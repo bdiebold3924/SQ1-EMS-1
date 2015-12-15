@@ -149,7 +149,17 @@ namespace AllEmployees
             DateTime result;
 
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
-
+            
+            if(temp.Equals("N/A")){
+                 Logger.Log("ParttimeEmployee", "SetDateOfHire", "Date of hire is valid and set.");
+                 dateOfHire = String.Copy(temp);
+                 return (true);
+            }
+            if(temp.Equals("")){
+                 Logger.Log("ParttimeEmployee", "SetDateOfHire", "Date of hire is valid and set.");
+                 dateOfHire = String.Copy(temp);
+                 return (true);
+            }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
                  Logger.Log("ParttimeEmployee", "SetDateOfHire", "Date of Hire is invalid.");
@@ -174,12 +184,16 @@ namespace AllEmployees
             DateTime result;
 
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
-            if (String.Compare("", temp) == 0)
-            {
-                //allowed to be blank... 
-                dateOfTermination = String.Copy(temp);
-                Logger.Log("ParttimeEmployee", "SetDateOfTermination", "Date Of Termination is valid.");
-                return (true);
+            
+            if(temp.Equals("N/A")){
+                 Logger.Log("ParttimeEmployee", "SetDateOfTermination", "Date of termination is valid and set.");
+                 dateOfTermination = String.Copy(temp);
+                 return (true);
+            }
+            if(temp.Equals("")){
+                 Logger.Log("ParttimeEmployee", "SetDateOfTerminaton", "Date of termination is valid and set.");
+                 dateOfTermination = String.Copy(temp);
+                 return (true);
             }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
@@ -339,30 +353,35 @@ namespace AllEmployees
 
             dateOfBirth = Regex.Replace(dateOfBirth, @"-+", ""); //removes all whitespace from the inputted date
 
-            if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
-            {
-                Logger.Log("ParttimeEmployee", "Validate", "Date of Birth is invalid, not a real date.");
-                return (false);
+            if(dateOfBirth != "N/A"){
+                if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+                {
+                    Logger.Log("ParttimeEmployee", "Validate", "date of birth is invalid");   //log the change 
+                    return (false);
+                }
             }
-
-
-            dateOfBirth = dateOfBirth.Insert(4, "-");
-            dateOfBirth = dateOfBirth.Insert(7, "-");
-
+        
+            if(dateOfBirth.Length > 5)
+            {
+                dateOfBirth = dateOfBirth.Insert(4, "-");
+                dateOfBirth = dateOfBirth.Insert(7, "-");  //reformat the string for output purposes 
+            }
             //now validate date of hire 
 
             dateOfHire = Regex.Replace(dateOfHire, @"-+", ""); //removes all whitespace from the inputted date
 
-            if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
-            {
-                Logger.Log("ParttimeEmployee", "Validate", "Date of Hire is invalid, not a real date.");
-                return (false);
+            if(dateOfHire != "N/A"){
+                if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+                {
+                    Logger.Log("ParttimeEmployee", "Validate", "Date of Hire is invalid, not a real date.");
+                    return (false);
+                }   
             }
-
-
-            dateOfHire = dateOfHire.Insert(4, "-");
-            dateOfHire = dateOfHire.Insert(7, "-");
-
+            
+            if(dateOfHire.Length > 5){
+                dateOfHire = dateOfHire.Insert(4, "-");
+                dateOfHire = dateOfHire.Insert(7, "-");
+            }
             //now validate date of termination
             int blankFlag = 0;
             dateOfTermination = Regex.Replace(dateOfTermination, @"-+", ""); //removes all whitespace from the inputted date
@@ -377,10 +396,15 @@ namespace AllEmployees
                 Logger.Log("ParttimeEmployee", "Validate", "Date of Termination is invalid, not a real date");
                 return (false);
             }
-
-            dateOfTermination = dateOfTermination.Insert(4, "-");
-            dateOfTermination = dateOfTermination.Insert(7, "-");
-
+            else if(dateOfTermination == "N/A"){
+                blankflag = 2; 
+            }
+            
+            if(dateOfTermination.Length > 5){
+                dateOfTermination = dateOfTermination.Insert(4, "-");
+                dateOfTermination = dateOfTermination.Insert(7, "-");
+            }
+            
             //validate salary
             if (hourlyRate <= 0.0)
             {
