@@ -194,10 +194,20 @@ namespace AllEmployees
         {
             string temp;
             DateTime result;    
-
+            
             temp = newBirthDay;
             temp = Regex.Replace(temp, @"-+", ""); //removes all whitespace from the inputted date
-
+            
+            if(temp.Equals("N/A")){
+                 Logger.Log("Employee", "SetDateOfBirth", "Date of Birth is valid and set.");
+                 dateOfBirth = String.Copy(temp);
+                 return (true);
+            }
+            if(temp.Equals("")){
+                 Logger.Log("Employee", "SetDateOfBirth", "Date of Birth is valid and set.");
+                 dateOfBirth = String.Copy(temp);
+                 return (true);
+            }
             if (!DateTime.TryParseExact(temp, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
             {
                 Logger.Log("Employee", "SetDateOfBirth", "Date of Birth is invalid.");
