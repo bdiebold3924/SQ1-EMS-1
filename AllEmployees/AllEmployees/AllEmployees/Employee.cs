@@ -49,7 +49,7 @@ namespace AllEmployees
         Use: The following is a constructor that takes an employees first and last name and sets the classes attributes
             to them. As well, it sets the remaining attributes to zero values.
             */
-        */
+        
         public Employee(string _firstName, string _lastName)    //constructor that takes names 
         {
             firstName = String.Copy(_firstName);

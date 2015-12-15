@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using AllEmployees;
+using Supporting;
 
 namespace TheCompany
 {
@@ -39,7 +40,7 @@ namespace TheCompany
                 if(e.socialInsuranceNumber == SIN)
                 {
                     theCompany.Remove(e);     //removes the current employee being looked at from the container
-                     Logger.Log("TheCompany", "Remove", "Current employee being looked at was removed from TheCompany");
+                    Logger.Log("TheCompany", "Remove", "Current employee being looked at was removed from TheCompany");
                 }
             }
         }
@@ -121,7 +122,8 @@ namespace TheCompany
 
         public void Modify()   //allows for modification to the whichever current object is being looked at and wants to be modified.
         {
-
+            //! Do to a design decision made by the Project Manager Brandon Diebold,
+            //! the logic for this method was added to Presentation.UIMenu.employeeDetailsMenu(string employeeSIN).
         }
         ~Company()   //destructor for the company 
         {

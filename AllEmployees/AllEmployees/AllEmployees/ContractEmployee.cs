@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using Supporting;
 
 
 namespace AllEmployees
@@ -18,7 +19,7 @@ namespace AllEmployees
         /**Attributes**/
         string contractStartDate;       
         string contractStopDate;
-        int fixedContractAmount;
+        double fixedContractAmount;
 
         //SIN for this class holds a Business number... 
         //first name for this class is nothing, last name is the corporations name
@@ -28,7 +29,7 @@ namespace AllEmployees
             The following method is a default constructor that sets all 
             attributes to 0 values
         */
-        public ContractEmployee()  
+        public ContractEmployee() : base()
         {
             contractStartDate = null;
             contractStopDate = null;
@@ -40,16 +41,11 @@ namespace AllEmployees
             Use: The following method is a constructor that takes the last name, which in this case is a company name
                 and sets the remaining attribute value to 0 or null values.
                 */
-        public ContractEmployee(string _lastName)   //constructor that takes last name.. first name is always blank in this case
+        public ContractEmployee(string _lastName) : base("", _lastName)   //constructor that takes last name.. first name is always blank in this case
         {
             contractStartDate = null;
             contractStopDate = null;
             fixedContractAmount = 0;
-
-            lastName = String.Copy(_lastName);
-            firstName = "";
-
-
         }
 
         /* ContractEmployee()
@@ -57,7 +53,9 @@ namespace AllEmployees
             Use: The following method is a constructor that takes parameters for all attributes and assigns these values to the 
                 class attributes.
                 */
-        public ContractEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newContractStartDate, string newContractStopDate, int newFixedContractAmount)
+        public ContractEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN,
+            string newContractStartDate, string newContractStopDate, double newFixedContractAmount)
+            : base(newFirstName, newLastName, newDateOfBirth, newSIN)
         {
             contractStartDate = String.Copy(newContractStartDate);
             contractStopDate = String.Copy(newContractStopDate);
@@ -82,7 +80,7 @@ namespace AllEmployees
             */
         public bool SetFixedContractAmount(string newAmount)
         {
-            if (!int.TryParse(newAmount, out fixedContractAmount))  //check to see if the inputted string is an int and if it is not..
+            if (!double.TryParse(newAmount, out fixedContractAmount))  //check to see if the inputted string is an int and if it is not..
             {
                
                 Logger.Log("ContractEmployee", "SetFixedContractAmount", "New amount entered is invalid, not an integer."); 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using Supporting;
 
 namespace AllEmployees
 {
@@ -24,7 +25,7 @@ namespace AllEmployees
         Purpose: The following is a default constructor for the SeasonalEmployee class that sets all
                 class attribute values to zero values
                 */
-        public SeasonalEmployee()   //default constructor
+        public SeasonalEmployee() : base()   //default constructor
         {
             season = null;
             piecePay = 0.0;
@@ -36,14 +37,10 @@ namespace AllEmployees
         Purpose: The following is a constructor for the SeasonalEmployee class that takes the first and last name of the employee
                 and sets those values as well as sets all class attribute values to zero values.
                 */
-        public SeasonalEmployee(string _firstName, string _lastName)
+        public SeasonalEmployee(string _firstName, string _lastName) : base(_firstName, _lastName)
         {
             season = null;
             piecePay = 0.0;
-
-            firstName = String.Copy(_firstName);
-            lastName = String.Copy(_lastName);
-
         }
         /**
         Name: SeasonalEmployee
@@ -51,7 +48,8 @@ namespace AllEmployees
         Purpose: The following is a constructor for the SeasonalEmployee class that takes all class attribute values as parameters 
                 and sets the class attributes to these specific pass values.
                 */
-        public SeasonalEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newSeason, double newPiecePay)
+        public SeasonalEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN,
+            string newSeason, double newPiecePay) : base(newFirstName, newLastName, newDateOfBirth, newSIN)
         {
             if (String.Compare("winter", newSeason) == 0)
             {
@@ -129,7 +127,7 @@ namespace AllEmployees
         {
             if (!double.TryParse(newPay, out piecePay))
             {
-                Logger.Log("SeasonalEmployee", "SetPiecePay", "PiecePay is invalid, not a valid number);
+                Logger.Log("SeasonalEmployee", "SetPiecePay", "PiecePay is invalid, not a valid number");
                 return (false);
 
             }

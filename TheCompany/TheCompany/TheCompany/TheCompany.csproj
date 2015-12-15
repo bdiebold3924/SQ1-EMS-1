@@ -34,6 +34,9 @@
     <Reference Include="AllEmployees">
       <HintPath>..\..\..\AllEmployees\AllEmployees\AllEmployees\bin\Debug\AllEmployees.dll</HintPath>
     </Reference>
+    <Reference Include="Supporting">
+      <HintPath>..\..\..\Supporting\Supporting\bin\Debug\Supporting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

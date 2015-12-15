@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using Supporting;
 
 namespace AllEmployees
 {
@@ -17,13 +18,13 @@ namespace AllEmployees
 
         string dateOfHire;
         string dateOfTermination;
-        int salary;
+        double salary;
         
         /** Name: FulltimeEmployee()
         Params: None
         Use: This is a default constructor that sets all class attributes to zero values.
         */
-        public FulltimeEmployee()   //default constructor sets all attributes to zero
+        public FulltimeEmployee() : base()   //default constructor sets all attributes to zero
         {
             dateOfHire = null;
             dateOfTermination = null;
@@ -35,21 +36,20 @@ namespace AllEmployees
         Use: This is a constructor that takes the employees first and last name, sets them, and sets all other class attributes 
             to zero values.
         */
-        public FulltimeEmployee(string _firstName, string _lastName)  //constructor that takes the employees first and last name
+        public FulltimeEmployee(string _firstName, string _lastName) : base(_firstName, _lastName)  //constructor that takes the employees first and last name
         {
             dateOfHire = null;
             dateOfTermination = null;
             salary = 0;
-
-            firstName = String.Copy(_firstName);
-            lastName = String.Copy(_lastName);
 
         }
           /** Name: FulltimeEmployee()
         Params: string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newDateOfHire, string newDateOfTermination, int newSalary
         Use: This is a constructor that takes all employee attributes as parameters and class attributes and assigns them these entered values.
         */
-        public FulltimeEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newDateOfHire, string newDateOfTermination, int newSalary)   //constructor that takes all attributes
+        public FulltimeEmployee(string newFirstName, string newLastName, string newDateOfBirth,
+            string newSIN, string newDateOfHire, string newDateOfTermination, double newSalary)
+            : base(newFirstName, newLastName, newDateOfBirth, newSIN)//constructor that takes all attributes
         {
             dateOfHire = String.Copy(newDateOfHire);
             dateOfTermination = String.Copy(newDateOfTermination);
@@ -286,7 +286,7 @@ namespace AllEmployees
 
             dateOfBirth = Regex.Replace(dateOfBirth, @"-+", ""); //removes all whitespace from the inputted date
 
-            if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+            if ((!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result)) && (dateOfBirth != "N/A"))
             {
                 Logger.Log("FullTimeEmployee", "Validate()","Date of Birth is invalid");
                 return (false);
@@ -300,7 +300,7 @@ namespace AllEmployees
 
             dateOfHire = Regex.Replace(dateOfHire, @"-+", ""); //removes all whitespace from the inputted date
 
-            if (!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
+            if ((!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result)) && (dateOfHire != "N/A"))
             {
                 Logger.Log("FullTimeEmployee", "Validate()","Date Of Hire is invalid");
                 return (false);
@@ -319,7 +319,7 @@ namespace AllEmployees
 
                 blankFlag = 1;
             }
-            else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
+            else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0 && dateOfTermination != "N/A")
             {
                 Logger.Log("FullTimeEmployee", "Validate()","Date of Termination is invalid");
                 return (false);

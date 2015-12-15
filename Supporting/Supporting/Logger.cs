@@ -53,7 +53,6 @@ namespace Supporting
             DateTime localDate = DateTime.Now;
             String year = "", month = "", day = "";
             String retVal = localDate.ToString();
-            Console.WriteLine(localDate.ToString());
             int i = 0;
             int stage = 0;
             while (true)
@@ -96,6 +95,7 @@ namespace Supporting
 */
         public static void WriteToFile(String message)
         {
+            DirectoryInfo di = Directory.CreateDirectory("Logs\\");
             String dir = "Logs\\ems." + parseDate() + ".log";
             using (StreamWriter append = new StreamWriter(File.Open(dir, System.IO.FileMode.Append)))
             {

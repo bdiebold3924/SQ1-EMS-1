@@ -22,7 +22,7 @@ namespace Supporting
             int index = 0;
             List<string> data = new List<string>();
             string database = "";
-            string dir = "//DBase//" + fileName;
+            string dir = "DBase//" + fileName;
             try
             {
                 database = System.IO.File.ReadAllText(dir);
@@ -138,7 +138,8 @@ namespace Supporting
                 }
                 data.Add(employeeInfo);
                 employeeInfo = "";
-
+                string message = "Total number of records read: " + data.Count().ToString();
+                Logger.Log("Database", "LoadDatabase", message);
             }
             return data;
         }
@@ -160,10 +161,13 @@ namespace Supporting
                 {
                     file.WriteLine(database[i]);
                 }
+                string message = "Total number of records: " + database.Count().ToString() + ", Total number of valid records: " + database.Count().ToString();
+                Logger.Log("Database", "SaveDatabase", message);
                 file.Close();
             }
             catch (Exception ex)
             {//save failed
+                Logger.Log("Database", "SaveDatabase", ex.Message);
                 return false;
             }
             return true;
@@ -184,6 +188,7 @@ namespace Supporting
             }
             catch (Exception ex)
             {//delete failed
+                Logger.Log("Database", "DeleteDatabase", ex.Message);
                 return false;
             }
             return true;

@@ -20,12 +20,12 @@ namespace Presentation
     /*!
      * NAME     : UIMenu<br>
      * PURPOSE  : The UIMenus class is used to display the various menus of the EMS1 project.
-     *              These menus allow the user to select and call various methods in the Support and TheCompany class libraries.
+     *              These menus allow the user to select and call various methods in the Supporting and TheCompany class libraries.
      */
     public static class UIMenu
     {
-
         static Company empList = new Company();
+
         /*!
          * FUNCTION     : public static void MainMenu()
          * 
@@ -74,7 +74,7 @@ namespace Presentation
         /*!
          * FUNCTION     : private static void fileManagementMenu()
          * 
-         * DESCRIPTION  : This function displays the menu that allows the user to open, read, and write to the log file(s).
+         * DESCRIPTION  : This function displays the menu that allows the user to open, read, and write to the database file(s).
          * 
          * PARAMETERS   : None
          * 
@@ -94,6 +94,11 @@ namespace Presentation
                 char input = Console.ReadKey().KeyChar;
                 switch (input)
                 {
+                    /*!
+                    * File Management Menu item 1 gets the data from the database file as returned from Database.LoadDatabase().
+                    * It then parses the string and makes a temporary employee with those fields.
+                    * If the temporary employee is valid, it adds it to the list of employees.
+                    */
                     case '1':
                         {
                             string fname = "";
@@ -101,161 +106,168 @@ namespace Presentation
                             string dob = "";
                             string sin = "";
                             string empType = "";
-                            Console.WriteLine("What file would you like to load the database from?");
+                            Console.WriteLine("\nWhat file would you like to load the database from?");
                             string fileName = Console.ReadLine();
                             database = Database.LoadDatabase(fileName);
-                            if(database[0] == "ERROR")
+                            if (database[0] == "ERROR")
                             {
                                 Console.WriteLine("Failed to load the database.");
                             }
-                            foreach(string s in database)
+                            else
                             {
-                                int index = 0;
-                                while(s[index] != '|')
+                                foreach (string s in database)
                                 {
-                                    empType += s[index];
+                                    int index = 0;
+                                    while (s[index] != '|')
+                                    {
+                                        empType += s[index];
+                                        index++;
+                                    }
                                     index++;
-                                }
-                                index++;
-                                while (s[index] != '|')
-                                {
-                                    lname += s[index];
+                                    while (s[index] != '|')
+                                    {
+                                        lname += s[index];
+                                        index++;
+                                    }
                                     index++;
-                                }
-                                index++;
-                                while (s[index] != '|')
-                                {
-                                    fname += s[index];
+                                    while (s[index] != '|')
+                                    {
+                                        fname += s[index];
+                                        index++;
+                                    }
                                     index++;
-                                }
-                                index++;
-                                while (s[index] != '|')
-                                {
-                                    sin += s[index];
+                                    while (s[index] != '|')
+                                    {
+                                        sin += s[index];
+                                        index++;
+                                    }
                                     index++;
-                                }
-                                index++;
-                                while (s[index] != '|')
-                                {
-                                    dob += s[index];
+                                    while (s[index] != '|')
+                                    {
+                                        dob += s[index];
+                                        index++;
+                                    }
                                     index++;
-                                }
-                                index++;
-                                switch (empType)
-                                {
-                                    case "FT":
-                                        {
-                                            string doh = "";
-                                            string dot = "";
-                                            string tmpSal = "";
-                                            int sal = 0;
-                                            while (s[index] != '|')
+                                    switch (empType)
+                                    {
+                                        case "FT":
                                             {
-                                                doh += s[index];
+                                                string doh = "";
+                                                string dot = "";
+                                                string tmpSal = "";
+                                                double sal = 0;
+                                                while (s[index] != '|')
+                                                {
+                                                    doh += s[index];
+                                                    index++;
+                                                }
                                                 index++;
+                                                while (s[index] != '|')
+                                                {
+                                                    dot += s[index];
+                                                    index++;
+                                                }
+                                                index++;
+                                                while (s[index] != '|')
+                                                {
+                                                    tmpSal += s[index];
+                                                    sal = Double.Parse(tmpSal);
+                                                    index++;
+                                                }
+                                                index++;
+                                                FulltimeEmployee tmpFTEmp = new FulltimeEmployee(fname, lname, dob, sin, doh, dot, sal);
+                                                empList.Add(tmpFTEmp, tmpFTEmp.Validate());
+                                                break;
                                             }
-                                            index++;
-                                            while (s[index] != '|')
+                                        case "PT":
                                             {
-                                                dot += s[index];
+                                                string doh = "";
+                                                string dot = "";
+                                                string tmpRate = "";
+                                                double rate = 0;
+                                                while (s[index] != '|')
+                                                {
+                                                    doh += s[index];
+                                                    index++;
+                                                }
                                                 index++;
+                                                while (s[index] != '|')
+                                                {
+                                                    dot += s[index];
+                                                    index++;
+                                                }
+                                                index++;
+                                                while (s[index] != '|')
+                                                {
+                                                    tmpRate += s[index];
+                                                    rate = Double.Parse(tmpRate);
+                                                    index++;
+                                                }
+                                                index++;
+                                                ParttimeEmployee tmpFTEmp = new ParttimeEmployee(fname, lname, dob, sin, doh, dot, rate);
+                                                empList.Add(tmpFTEmp, tmpFTEmp.Validate());
+                                                break;
                                             }
-                                            index++;
-                                            while (s[index] != '|')
+                                        case "CT":
                                             {
-                                                tmpSal += s[index];
-                                                sal = Int32.Parse(tmpSal);
+                                                string cStartD = "";
+                                                string cStopD = "";
+                                                string tmpAmount = "";
+                                                double amount = 0;
+                                                while (s[index] != '|')
+                                                {
+                                                    cStartD += s[index];
+                                                    index++;
+                                                }
                                                 index++;
+                                                while (s[index] != '|')
+                                                {
+                                                    cStopD += s[index];
+                                                    index++;
+                                                }
+                                                index++;
+                                                while (s[index] != '|')
+                                                {
+                                                    tmpAmount += s[index];
+                                                    amount = Double.Parse(tmpAmount);
+                                                    index++;
+                                                }
+                                                index++;
+                                                ContractEmployee tmpFTEmp = new ContractEmployee(fname, lname, dob, sin, cStartD, cStopD, amount);
+                                                empList.Add(tmpFTEmp, tmpFTEmp.Validate());
+                                                break;
                                             }
-                                            index++;
-                                            FulltimeEmployee tmpFTEmp = new FulltimeEmployee(fname, lname, dob, sin, doh, dot, sal);
-                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
-                                            break;
-                                        }
-                                    case "PT":
-                                        {
-                                            string doh = "";
-                                            string dot = "";
-                                            string tmpRate = "";
-                                            double rate = 0;
-                                            while (s[index] != '|')
+                                        case "SN":
                                             {
-                                                doh += s[index];
+                                                string season = "";
+                                                string tmpPay = "";
+                                                double pay = 0;
+                                                while (s[index] != '|')
+                                                {
+                                                    season += s[index];
+                                                    index++;
+                                                }
                                                 index++;
-                                            }
-                                            index++;
-                                            while (s[index] != '|')
-                                            {
-                                                dot += s[index];
+                                                while (s[index] != '|')
+                                                {
+                                                    tmpPay += s[index];
+                                                    pay = Double.Parse(tmpPay);
+                                                    index++;
+                                                }
                                                 index++;
+                                                SeasonalEmployee tmpFTEmp = new SeasonalEmployee(fname, lname, dob, sin, season, pay);
+                                                empList.Add(tmpFTEmp, tmpFTEmp.Validate());
+                                                break;
                                             }
-                                            index++;
-                                            while (s[index] != '|')
-                                            {
-                                                tmpRate += s[index];
-                                                rate = Double.Parse(tmpRate);
-                                                index++;
-                                            }
-                                            index++;
-                                            ParttimeEmployee tmpFTEmp = new ParttimeEmployee(fname, lname, dob, sin, doh, dot, rate);
-                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
-                                            break;
-                                        }
-                                    case "CT":
-                                        {
-                                            string cStartD = "";
-                                            string cStopD = "";
-                                            string tmpAmount = "";
-                                            int amount = 0;
-                                            while (s[index] != '|')
-                                            {
-                                                cStartD += s[index];
-                                                index++;
-                                            }
-                                            index++;
-                                            while (s[index] != '|')
-                                            {
-                                                cStopD += s[index];
-                                                index++;
-                                            }
-                                            index++;
-                                            while (s[index] != '|')
-                                            {
-                                                tmpAmount += s[index];
-                                                amount = Int32.Parse(tmpAmount);
-                                                index++;
-                                            }
-                                            index++;
-                                            ContractEmployee tmpFTEmp = new ContractEmployee(fname, lname, dob, sin, cStartD, cStopD, amount);
-                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
-                                            break;
-                                        }
-                                    case "SN":
-                                        {
-                                            string season = "";
-                                            string tmpPay = "";
-                                            double pay = 0;
-                                            while (s[index] != '|')
-                                            {
-                                                season += s[index];
-                                                index++;
-                                            }
-                                            index++;
-                                            while (s[index] != '|')
-                                            {
-                                                tmpPay += s[index];
-                                                pay = Double.Parse(tmpPay);
-                                                index++;
-                                            }
-                                            index++;
-                                            SeasonalEmployee tmpFTEmp = new SeasonalEmployee(fname, lname, dob, sin, season, pay);
-                                            empList.Add(tmpFTEmp, tmpFTEmp.Validate());
-                                            break;
-                                        }
+                                    }
                                 }
                             }
                             break;
                         }
+                    /*!
+                    * File Management Menu item 2 creates a string with the employee data.
+                    * It passes that string to Database.SaveDatabase() for saving.
+                    */
                     case '2':
                         {
                             string traStr = empList.Traverse();
@@ -313,9 +325,14 @@ namespace Presentation
                 char input = Console.ReadKey().KeyChar;
                 switch (input)
                 {
+                    /*!
+                     * Employee Management Menu item 1 gets the data from the database file as returned from Database.LoadDatabase().
+                     * It then parses the string and makes a temporary employee with those fields.
+                     * If the temporary employee is valid, it adds it to the list of employees.
+                     */
                     case '1':
                         {
-                            empList.Traverse();
+                            Console.WriteLine(empList.Traverse());
                             break;
                         }
                     case '2':
@@ -422,12 +439,12 @@ namespace Presentation
         }
 
         /*!
-         * FUNCTION     : private static void employeeDetailsMenu(string employee)
+         * FUNCTION     : private static void employeeDetailsMenu(string employeeSIN)
          * 
-         * DESCRIPTION  : This function displays the menu that allows the user to view/update the details of a specified employee
+         * DESCRIPTION  : This function displays the menu that allows the user to update the details of a specified employee
          *                  in the employee database.
          * 
-         * PARAMETERS   : \param string employee : THe employee to display/update
+         * PARAMETERS   : \param string employeeSIN : The employee to display/update
          * 
          * RETURN       : None
          * 
@@ -849,12 +866,12 @@ namespace Presentation
         }
 
         /*!
-         * FUNCTION     : private static void employeeDetailsMenu(string employee)
+         * FUNCTION     : private static void employeeDetailsMenu(string employee, string type)
          * 
-         * DESCRIPTION  : This function displays the menu that allows the user to view/update the details of a specified employee
-         *                  in the employee database.
+         * DESCRIPTION  : This function displays the menu that allows the user to create new employees.
          * 
-         * PARAMETERS   : \param string employee : THe employee to display/update
+         * PARAMETERS   : \param string employee : The last/company name of the new employee
+         *                \param string type     : The type of employee being created
          * 
          * RETURN       : None
          * 
@@ -869,13 +886,13 @@ namespace Presentation
             string doh = "";
             string dot = "";
             string tmpSal = "";
-            int sal = 0;
+            double sal = 0;
             string tmpRate = "";
             double rate = 0;
             string cStartD = "";
             string cStopD = "";
             string tmpAmount = "";
-            int amount = 0;
+            double amount = 0;
             string season = "";
             string tmpPay = "";
             double pay = 0;
@@ -924,7 +941,7 @@ namespace Presentation
                                             tmpSal = Console.ReadLine();
                                             try
                                             {
-                                                sal = Int32.Parse(tmpSal);
+                                                sal = Double.Parse(tmpSal);
                                                 break;
                                             }
                                             catch (Exception)
@@ -1044,7 +1061,7 @@ namespace Presentation
                                             tmpAmount = Console.ReadLine();
                                             try
                                             {
-                                                amount = Int32.Parse(tmpAmount);
+                                                amount = Double.Parse(tmpAmount);
                                                 break;
                                             }
                                             catch (Exception)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using Supporting;
 
 namespace AllEmployees
 {
@@ -25,7 +26,7 @@ namespace AllEmployees
         Params: None
         Use: This method is a default constructor that sets all attribute values of the parttime employee class to zero values.
         */
-        public ParttimeEmployee()   //default constructor sets all attributes to null/zero
+        public ParttimeEmployee() : base()   //default constructor sets all attributes to null/zero
         {
             dateOfHire = null;
             dateOfTermination = null;
@@ -37,14 +38,11 @@ namespace AllEmployees
         Use: This method is a constructor that takes the first and last name of the employee, sets those values, as well as 
             sets all other class attribute values to zero values.
         */
-        public ParttimeEmployee(string _FirstName, string _LastName)    //constructor that takes the first and last name
+        public ParttimeEmployee(string _firstName, string _lastName) : base(_firstName, _lastName)    //constructor that takes the first and last name
         {
             dateOfHire = null;
             dateOfTermination = null;
             hourlyRate = 0.0;
-
-            firstName = String.Copy(_FirstName);
-            lastName = String.Copy(_LastName);
         }
 
          /**
@@ -53,7 +51,9 @@ namespace AllEmployees
         Use: This method is a constructor that takes in all values for the parttime employee as parameters and sets the attribute values 
             to these inputs.
         */
-        public ParttimeEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN, string newDateOfHire, string newDateOfTermination, double newHourlyRate)    //constructor taking all attribute values
+        public ParttimeEmployee(string newFirstName, string newLastName, string newDateOfBirth, string newSIN,
+            string newDateOfHire, string newDateOfTermination, double newHourlyRate)
+            : base(newFirstName, newLastName, newDateOfBirth, newSIN)    //constructor taking all attribute values
         {
             dateOfHire = String.Copy(newDateOfHire);
             dateOfTermination = String.Copy(newDateOfTermination);
