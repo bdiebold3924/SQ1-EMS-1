@@ -423,20 +423,20 @@ namespace AllEmployees
             //check if any invalid flags were set...if so, return false.
             if(lastNameFlag == 1){
             	return (false);
-            }
-            if(binFlag == 1){
+            }            
+            else if(binFlag == 1){
             	return (false);
             }
-            if(dobFlag == 1){
+            else if(dobFlag == 1){
             	return (false);
             }
-            if(startDateFlag == 1){
+            else if(startDateFlag == 1){
             	return (false);
             }
-            if(endDateFlag == 1){
+            else if(endDateFlag == 1){
             	return (false);
             }
-            if(amountFlag == 1){
+            else if(amountFlag == 1){
             	return (false);
             }
             //Otherwise, no flags were set, everything is valid.. return true and log the validity.
