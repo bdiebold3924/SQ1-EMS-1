@@ -238,6 +238,18 @@ namespace AllEmployees
         {
             //do not have to check first name for validity because the first name in this method is going to be blank.
             //now check lastName for validity ... stands for company name
+            
+            
+            //set flags for each val to be verified....
+            int lastNameFlag = 0;
+            int binFlag = 0;		//business number flag
+            
+            int dobFlag = 0;
+            int startDateFlag = 0;
+            int endDateFlag = 0;
+            int amountFlag = 0;
+            
+            
             foreach (char c in lastName)
             {
                 if (char.IsUpper(c))
@@ -260,8 +272,8 @@ namespace AllEmployees
                 }
                 else
                 {
-                    Logger.Log("ContractEmployee", "Validate", "Company Name is invalid");   //log the change 
-                    return (false);
+                    Logger.Log("ContractEmployee", "Validate", "Company Name is invalid, contains an invalid character or space");   //log the change with accurate feedback to the issue 
+                    lastNameFlag = 1; //set the flag for the name being invalid... 
                 }
             }
 
@@ -279,8 +291,8 @@ namespace AllEmployees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))    //if the size of the SIN is exceeded or too small it is invalid
             {
-                Logger.Log("ContractEmployee", "Validate", "B/N is invalid");   //log the change 
-                return (false);
+                Logger.Log("ContractEmployee", "Validate", "B/N is invalid. Provided B/N contains invalid length. Length of the B/N can only be 9 numbers.");   //log the change 
+                binFlag = 1; //set the flag for an invalid business number... 
 
             }
 
@@ -291,8 +303,8 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9') //if the SIN contains anything other than numbers it is invalid
                 {
-                    Logger.Log("ContractEmployee", "Validate", "B/N is invalid");   //log the change 
-                    return (false);
+                    Logger.Log("ContractEmployee", "Validate", "B/N is invalid. Provided B/N contains invalid characters. Can only contain numbers.");   //log the change 
+                    binFlag = 1; //set the invalid flag
                 }
             }
 
@@ -331,18 +343,18 @@ namespace AllEmployees
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
 
-                 Logger.Log("ContractEmployee", "Validate", "B/N # is invalid");   //log the change 
-                return (false);
+                Logger.Log("ContractEmployee", "Validate", "B/N # is invalid. Provided B/N does not follow required SIN check digit protocol.");   //log the change 
+                binFlag = 1; //set the flag 
             }
             if ((int)Char.GetNumericValue(socialInsuranceNumber[0]) != (int)Char.GetNumericValue(dateOfBirth[2]))//for contractEmployee the last two numbers of Date of birth must be the first two numbers of the SIN
             {
-                 Logger.Log("ContractEmployee", "Validate", "B/N is invalid");   //log the change 
-                return (false);
+            	Logger.Log("ContractEmployee", "Validate", "B/N is invalid. First number of the B/N must be the same as the third number in the company's year created.");   //log the change 
+                binFlag = 1; //set the flag
             }
             if ((int)Char.GetNumericValue(socialInsuranceNumber[1]) != (int)Char.GetNumericValue(dateOfBirth[3]))
             {
-                Logger.Log("ContractEmployee", "Validate", "B/N is invalid");   //log the change 
-                return (false);
+                Logger.Log("ContractEmployee", "Validate", "B/N is invalid. Second number of the B/N must be the same as the fourth number in the company's year created.");   //log the change 
+                binFlag = 1; //set the flag
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(5, " ");   //formats the output accordingly
 
@@ -357,8 +369,8 @@ namespace AllEmployees
             if(dateOfBirth != "N/A"){
                 if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
                 {
-                    Logger.Log("ContractEmployee", "Validate", "date of birth is invalid");   //log the change 
-                    return (false);
+                    Logger.Log("ContractEmployee", "Validate", "date of birth is invalid, supplied date of birth is not a real date.");   //log the change 
+                    dobFlag = 1;
                 }
             }
         
@@ -374,12 +386,12 @@ namespace AllEmployees
             if(contractStartDate != "N/A"){
                 if (!DateTime.TryParseExact(contractStartDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
                 {
-                    Logger.Log("ContractEmployee", "Validate", "Contract start date is invalid");   //log the change 
-                    return (false);
+                    Logger.Log("ContractEmployee", "Validate", "Contract start date is invalid, supplied date is not a real date.");   //log the change 
+                    startDateFlag = 1; //set the invalid flag
                 }
             }
 
-            if(contractStartDate.Length > 3)
+            if(contractStartDate.Length > 3)	//reformat the date string for proper output format
             {
                 contractStartDate = contractStartDate.Insert(4, "-");
                 contractStartDate = contractStartDate.Insert(7, "-");
@@ -393,24 +405,43 @@ namespace AllEmployees
             if(contractStopDate != "N/A"){
                 if (!DateTime.TryParseExact(contractStopDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0)
                 {
-                    Logger.Log("ContractEmployee", "Validate", "Contract Stop date is invalid");   //log the change 
-                    return (false);
+                    Logger.Log("ContractEmployee", "Validate", "Contract Stop date is invalid, supplied date is not a real date");   //log the change 
+                    stopDateFlag = 1; //set invalid flag
                 }
             }
-            if(contractStopDate.Length > 3){
+            if(contractStopDate.Length > 3){	//reformat the date string for proper output format
                 contractStopDate = contractStopDate.Insert(4, "-");
                 contractStopDate = contractStopDate.Insert(7, "-");
             }
             //validate salary
             if (fixedContractAmount <= 0)   //cannot be less than or equal to zero
             {
-                Logger.Log("ContractEmployee", "Validate", "Salary is invalid");   //log the change 
-                return (false);
+                Logger.Log("ContractEmployee", "Validate", "Salary is invalid, must be an integer greater than zero.");   //log the change 
+               	amountFlag = 1; //set invalid flag
             }
+            
+            //check if any invalid flags were set...if so, return false.
+            if(lastNameFlag == 1){
+            	return (false);
+            }
+            if(binFlag == 1){
+            	return (false);
+            }
+            if(dobFlag == 1){
+            	return (false);
+            }
+            if(startDateFlag == 1){
+            	return (false);
+            }
+            if(endDateFlag == 1){
+            	return (false);
+            }
+            if(amountFlag == 1){
+            	return (false);
+            }
+            //Otherwise, no flags were set, everything is valid.. return true and log the validity.
             Logger.Log("ContractEmployee", "Validate", "All Attributes for ContractEmployee are valid");   //log the change 
             return (true);
         }
-
-
     }
 }
