@@ -175,7 +175,16 @@ namespace AllEmployees
         Use: The following is a method that checks to see if all attributes for the Fulltime Employee are valid
         */
         public bool Validate()
-        {
+{
+        //set of flags that will be set if the respective attribute is found to be invalid
+        int firstNameFlag = 0;
+        int lastNameFlag = 0;
+        int sinFlag = 0;
+        int dobFlag = 0;
+        int dohFlag = 0;
+        int dotFlag = 0;
+        int salaryFlag = 0;
+        
             //first validate first name... 
             foreach (char c in firstName)
             {
@@ -199,8 +208,8 @@ namespace AllEmployees
                 }
                 else
                 {
-                    Logger.Log("FullTimeEmployee", "Validate()","firstName is invalid");
-                    return (false);
+                    Logger.Log("FullTimeEmployee", "Validate()","firstName is invalid. Supplied name contains invalid characters.");
+                    firstNameFlag = 1;
                 }
 
             }
@@ -228,8 +237,8 @@ namespace AllEmployees
                 }
                 else
                 {
-                    Logger.Log("FullTimeEmployee", "Validate()","lastName is invalid");
-                    return (false);
+                    Logger.Log("FullTimeEmployee", "Validate()","lastName is invalid. Supplied last name contains invalid characters.");
+                    lastNameFlag = 0;
                 }
             }
 
@@ -247,8 +256,8 @@ namespace AllEmployees
 
             if ((socialInsuranceNumber.Length == 0) || (socialInsuranceNumber.Length < 9) || (socialInsuranceNumber.Length > 9))
             {
-                Logger.Log("FullTimeEmployee", "Validate()","SIN # is invalid");
-                return (false);
+                Logger.Log("FullTimeEmployee", "Validate()","SIN # is invalid. Length of supplied SIN is invalid. Length must be 9 digits.");
+                sinFlag = 1;
 
             }
 
@@ -259,8 +268,8 @@ namespace AllEmployees
             {
                 if (c < '0' || c > '9')
                 {
-                    Logger.Log("FullTimeEmployee", "Validate()","SIN # is invalid");
-                    return (false);
+                    Logger.Log("FullTimeEmployee", "Validate()","SIN # is invalid. Supplied SIN contains invalid characters. Must only contain integers.");
+                    sinFlag = 1;
                 }
             }
 
@@ -298,8 +307,8 @@ namespace AllEmployees
             //check if intTotal is equal to the 9th digit of the SIN, if so, SIN is valid...
             if (intTotal != (int)Char.GetNumericValue(socialInsuranceNumber[8]))
             {
-                Logger.Log("FullTimeEmployee", "Validate()","SIN # is invalid");
-                return (false);
+                Logger.Log("FullTimeEmployee", "Validate()","SIN # is invalid. Supplied SIN does not meet the requirements of the SIN check digit protocol.");
+                sinFlag = 1;
             }
             socialInsuranceNumber = socialInsuranceNumber.Insert(3, " ");
             socialInsuranceNumber = socialInsuranceNumber.Insert(7, " ");
@@ -315,8 +324,8 @@ namespace AllEmployees
             if(dateOfBirth != "N/A"){
                 if (!DateTime.TryParseExact(dateOfBirth, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result))
                 {
-                    Logger.Log("FulltimeEmployee", "Validate", "date of birth is invalid");   //log the change 
-                    return (false);
+                    Logger.Log("FulltimeEmployee", "Validate", "date of birth is invalid. Supplied date of birth is not a real date.");   //log the change 
+                    dobFlag = 1;
                 }
             }
         
@@ -333,8 +342,8 @@ namespace AllEmployees
             if(dateOfHire != "N/A"){
                 if ((!DateTime.TryParseExact(dateOfHire, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result)) && (dateOfHire != "N/A"))
                 {
-                    Logger.Log("FullTimeEmployee", "Validate()","Date Of Hire is invalid");
-                    return (false);
+                    Logger.Log("FullTimeEmployee", "Validate()","Date Of Hire is invalid. Supplied date of hire is not a real date.");
+                    dohFlag = 1; 
                 }
             }
             
@@ -354,8 +363,8 @@ namespace AllEmployees
             }
             else if (!DateTime.TryParseExact(dateOfTermination, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out result) && blankFlag == 0 && dateOfTermination != "N/A")
             {
-                Logger.Log("FullTimeEmployee", "Validate()","Date of Termination is invalid");
-                return (false);
+                Logger.Log("FullTimeEmployee", "Validate()","Date of Termination is invalid. Supplied date of termination is not a real date.");
+                dotFlag = 1;
             }
             else if(dateOfTermination == "N/A"){
                 blankFlag = 1;
@@ -368,9 +377,35 @@ namespace AllEmployees
             //validate salary
             if (salary <= 0)
             {
-                Logger.Log("FullTimeEmployee", "Validate()","Salary is invalid");
-                return (false);
+                Logger.Log("FullTimeEmployee", "Validate()","Salary is invalid. Salary supplied contains invalid characters or is below zero. Must be an integer greater than zero.");
+                salaryFlag = 1;
             }
+            
+            //check if any validity flags were set to invalid
+            if(firstNameFlag == 1){
+            	return (false);
+            }
+            else if(lasrNameFlag == 1){
+            	return(false);
+            }
+            else if(sinFlag == 1){
+            	return (false);
+            }
+            else if(dobFlag == 1){
+            	return (false);
+            }
+            else if(dohFlag == 1){
+            	return (false);
+            }
+            else if(dotFlag == 1){
+            	return (false);
+            }
+            else if (salaryFlag == 1){
+            	return (false);
+            }
+            //if none were set, all are valid, log this and return true.
+            Logger.Log("FullTimeEmployee", "Validate()","All attributes of the FullTimeEmployee have been validated.");
+            
             return (true);
         }
 
